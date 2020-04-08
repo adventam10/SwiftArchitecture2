@@ -9,12 +9,59 @@
 @testable import Models
 
 final class WeatherFactory {
-    static func makeMax(celsius: String, fahrenheit: String) -> Max? {
+
+    static func makeImageJSONText(url: String, title: String, height: Int, width: Int) -> String {
+        let text = """
+        {
+        "url": "\(url)",
+        "title": "\(title)",
+        "height": \(height),
+        "width": \(width)
+        }
+        """
+        return text
+    }
+
+    static func makeProviderJSONText(link: String, name: String) -> String {
+        let text = """
+        {
+        "link": "\(link)",
+        "name": "\(name)"
+        }
+        """
+        return text
+    }
+
+    static func makeDescriptionJSONText(text: String, publicTime: String) -> String {
+        let text = """
+        {
+        "text": "\(text)",
+        "publicTime": "\(publicTime)"
+        }
+        """
+        return text
+    }
+
+    static func makeMaxJSONText(celsius: String, fahrenheit: String) -> String {
         let text = """
         { "celsius": "\(celsius)", "fahrenheit": "\(fahrenheit)" }
         """
-        return try? JSONDecoder().decode(Max.self, from: text.data(using: .utf8)!)
+        return text
     }
+
+    static func makeLocationJSONText(area: String, city: String, prefecture: String) -> String {
+        let text = """
+        {
+        "area": "\(area)",
+        "city": "\(city)",
+        "prefecture": "\(prefecture)"
+        }
+        """
+        return text
+    }
+
+    
+    
     
     static func makeForecast(date: String, dateLabel: String, image: Image?,
                       telop: String, temperature: Temperature?) -> Forecast? {
@@ -29,28 +76,7 @@ final class WeatherFactory {
         """
         return try? JSONDecoder().decode(Forecast.self, from: text.data(using: .utf8)!)
     }
-    
-    static func makeLocation(area: String, city: String, prefecture: String) -> Location? {
-        let text = """
-        {
-        "area": "\(area)",
-        "city": "\(city)",
-        "prefecture": "\(prefecture)"
-        }
-        """
-        return try? JSONDecoder().decode(Location.self, from: text.data(using: .utf8)!)
-    }
-    
-    static func makeLocation(text: String, publicTime: String) -> Description? {
-        let text = """
-        {
-        "text": "\(text)",
-        "publicTime": "\(publicTime)"
-        }
-        """
-        return try? JSONDecoder().decode(Description.self, from: text.data(using: .utf8)!)
-    }
-    
+
     static func makeCopyright(link: String, title: String, image: Image?, provider: Provider?) -> Copyright? {
         let providers = (provider != nil) ? encodeJSON(provider) : ""
         let text = """
@@ -63,29 +89,7 @@ final class WeatherFactory {
         """
         return try? JSONDecoder().decode(Copyright.self, from: text.data(using: .utf8)!)
     }
-    
-    static func makeProvider(link: String, name: String) -> Provider? {
-        let text = """
-        {
-        "link": "\(link)",
-        "name": "\(name)"
-        }
-        """
-        return try? JSONDecoder().decode(Provider.self, from: text.data(using: .utf8)!)
-    }
-    
-    static func makeImage(url: String, title: String, height: Int, width: Int) -> Image? {
-        let text = """
-        {
-        "url": "\(url)",
-        "title": "\(title)",
-        "height": \(height),
-        "width": \(width)
-        }
-        """
-        return try? JSONDecoder().decode(Image.self, from: text.data(using: .utf8)!)
-    }
-    
+
     static func makeTemperature(max: Max?, min: Max?) -> Temperature? {
         let text = """
         {
