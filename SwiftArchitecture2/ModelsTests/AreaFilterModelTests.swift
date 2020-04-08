@@ -35,7 +35,7 @@ final class AreaFilterModelTests: XCTestCase {
         XCTAssertEqual(model.selectedAreaIds.count, results.count)
     }
 
-    func test_updateAreaIds_add_id_where_empty() {
+    func test_updateAreaIds_add_id_when_empty() {
         let model = AreaFilterModel(selectedAreaIds: [])
         model.updateAreaIds(id: 3)
         let results = [3]
@@ -57,7 +57,7 @@ final class AreaFilterModelTests: XCTestCase {
         XCTAssertEqual(model.selectedAreaIds.count, allAreaCount)
     }
 
-    func test_updateAreaIdsWithIsAllCheck_true_where_empty() {
+    func test_updateAreaIdsWithIsAllCheck_true_when_empty() {
         let model = AreaFilterModel(selectedAreaIds: [])
         model.updateAreaIds(isAllCheck: true)
         XCTAssertEqual(model.selectedAreaIds.count, allAreaCount)
@@ -69,7 +69,7 @@ final class AreaFilterModelTests: XCTestCase {
         XCTAssertTrue(model.selectedAreaIds.isEmpty)
     }
 
-    func test_updateAreaIdsWithIsAllCheck_false_where_empty() {
+    func test_updateAreaIdsWithIsAllCheck_false_when_empty() {
         let model = AreaFilterModel(selectedAreaIds: [])
         model.updateAreaIds(isAllCheck: false)
         XCTAssertTrue(model.selectedAreaIds.isEmpty)

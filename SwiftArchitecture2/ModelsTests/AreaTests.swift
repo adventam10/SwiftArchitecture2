@@ -90,4 +90,3 @@ final class AreaTests: XCTestCase {
         XCTAssertEqual(Area.kyushu.name, "九州")
     }
 }
-
