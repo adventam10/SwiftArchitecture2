@@ -7,17 +7,16 @@
 
 import Foundation
 
-public struct Weather : Codable {
+public struct Weather: Codable {
 
-	public let copyright : Copyright?
-	public let descriptionField : Description?
-	public let forecasts : [Forecast]?
-	public let link : String
-	public let location : Location?
-	public let pinpointLocations : [Provider]?
-	public let publicTime : String
-	public let title : String
-
+	public let copyright: Copyright?
+	public let descriptionField: Description?
+	public let forecasts: [Forecast]?
+	public let link: String
+	public let location: Location?
+	public let pinpointLocations: [Provider]?
+	public let publicTime: String
+	public let title: String
 
 	enum CodingKeys: String, CodingKey {
 		case copyright
@@ -40,6 +39,4 @@ public struct Weather : Codable {
 		publicTime = try values.decodeIfPresent(String.self, forKey: .publicTime) ?? ""
 		title = try values.decodeIfPresent(String.self, forKey: .title) ?? ""
 	}
-
-
 }

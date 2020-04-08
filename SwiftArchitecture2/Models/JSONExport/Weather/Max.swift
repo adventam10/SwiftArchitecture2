@@ -4,11 +4,10 @@
 
 import Foundation
 
-public struct Max : Codable {
+public struct Max: Codable {
 
-	public let celsius : String
-	public let fahrenheit : String
-
+	public let celsius: String
+	public let fahrenheit: String
 
 	enum CodingKeys: String, CodingKey {
 		case celsius = "celsius"
@@ -19,6 +18,4 @@ public struct Max : Codable {
 		celsius = try values.decodeIfPresent(String.self, forKey: .celsius) ?? ""
 		fahrenheit = try values.decodeIfPresent(String.self, forKey: .fahrenheit) ?? ""
 	}
-
-
 }

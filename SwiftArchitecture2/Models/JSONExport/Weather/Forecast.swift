@@ -7,14 +7,13 @@
 
 import Foundation
 
-public struct Forecast : Codable {
+public struct Forecast: Codable {
 
-	public let date : String
-	public let dateLabel : String
-	public let image : Image?
-	public let telop : String
-	public let temperature : Temperature?
-
+	public let date: String
+	public let dateLabel: String
+	public let image: Image?
+	public let telop: String
+	public let temperature: Temperature?
 
 	enum CodingKeys: String, CodingKey {
 		case date = "date"
@@ -31,6 +30,4 @@ public struct Forecast : Codable {
 		telop = try values.decodeIfPresent(String.self, forKey: .telop) ?? ""
 		temperature = try values.decodeIfPresent(Temperature.self, forKey: .temperature)
 	}
-
-
 }

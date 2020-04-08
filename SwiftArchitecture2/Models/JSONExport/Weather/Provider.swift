@@ -7,11 +7,10 @@
 
 import Foundation
 
-public struct Provider : Codable {
+public struct Provider: Codable {
 
-	public let link : String
-	public let name : String
-
+	public let link: String
+	public let name: String
 
 	enum CodingKeys: String, CodingKey {
 		case link = "link"
@@ -22,6 +21,4 @@ public struct Provider : Codable {
 		link = try values.decodeIfPresent(String.self, forKey: .link) ?? ""
 		name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
 	}
-
-
 }

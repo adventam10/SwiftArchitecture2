@@ -4,12 +4,11 @@
 
 import Foundation
 
-public struct CityData : Codable {
+public struct CityData: Codable {
 
-	public let area : Int
-	public let cityId : String
-	public let name : String
-
+	public let area: Int
+	public let cityId: String
+	public let name: String
 
 	enum CodingKeys: String, CodingKey {
 		case area = "area"
@@ -22,6 +21,4 @@ public struct CityData : Codable {
 		cityId = try values.decodeIfPresent(String.self, forKey: .cityId) ?? ""
 		name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
 	}
-
-
 }

@@ -7,14 +7,13 @@
 
 import Foundation
 
-public struct Image : Codable {
+public struct Image: Codable {
 
-	public let height : Int
-	public let link : String
-	public let title : String
-	public let url : String
-	public let width : Int
-
+	public let height: Int
+	public let link: String
+	public let title: String
+	public let url: String
+	public let width: Int
 
 	enum CodingKeys: String, CodingKey {
 		case height = "height"

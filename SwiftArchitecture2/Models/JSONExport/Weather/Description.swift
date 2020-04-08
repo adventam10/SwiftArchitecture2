@@ -7,11 +7,10 @@
 
 import Foundation
 
-public struct Description : Codable {
+public struct Description: Codable {
 
-	public let publicTime : String
-	public let text : String
-
+	public let publicTime: String
+	public let text: String
 
 	enum CodingKeys: String, CodingKey {
 		case publicTime = "publicTime"
@@ -22,6 +21,4 @@ public struct Description : Codable {
 		publicTime = try values.decodeIfPresent(String.self, forKey: .publicTime) ?? ""
 		text = try values.decodeIfPresent(String.self, forKey: .text) ?? ""
 	}
-
-
 }

@@ -7,13 +7,12 @@
 
 import Foundation
 
-public struct Copyright : Codable {
+public struct Copyright: Codable {
 
-	public let image : Image?
-	public let link : String
-	public let provider : [Provider]?
-	public let title : String
-
+	public let image: Image?
+	public let link: String
+	public let provider: [Provider]?
+	public let title: String
 
 	enum CodingKeys: String, CodingKey {
 		case image
@@ -28,6 +27,4 @@ public struct Copyright : Codable {
 		provider = try values.decodeIfPresent([Provider].self, forKey: .provider)
 		title = try values.decodeIfPresent(String.self, forKey: .title) ?? ""
 	}
-
-
 }

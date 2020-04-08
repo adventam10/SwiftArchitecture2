@@ -7,11 +7,10 @@
 
 import Foundation
 
-public struct Temperature : Codable {
+public struct Temperature: Codable {
 
-	public let max : Max?
-	public let min : Max?
-
+	public let max: Max?
+	public let min: Max?
 
 	enum CodingKeys: String, CodingKey {
 		case max = "max"
@@ -22,6 +21,4 @@ public struct Temperature : Codable {
 		max = try values.decodeIfPresent(Max.self, forKey: .max)
 		min = try values.decodeIfPresent(Max.self, forKey: .min)
 	}
-
-
 }
