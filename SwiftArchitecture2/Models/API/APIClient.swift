@@ -15,6 +15,19 @@ public enum APIError: Error {
     case invalidJSON
 }
 
+extension APIError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .network:
+            return "ネットワークの接続状態を確認してください。"
+        case .server:
+            return "サーバーと通信できません。"
+        case .invalidJSON:
+            return "JSONパース失敗。"
+        }
+    }
+}
+
 public enum HTTPMethod: String {
     case post
     case get

@@ -17,10 +17,6 @@ final class AreaFilterViewController: UIViewController {
 
     weak var delegate: AreaFilterViewControllerDelegate?
     let viewSize = CGSize(width: 150, height: 44*9)
-    var isAllCheck: Bool {
-        return model.areaList.allSatisfy { model.selectedAreaIds.contains($0.id) }
-    }
-
     var model: AreaFilterModel! {
         didSet {
             registerModel()
@@ -28,6 +24,10 @@ final class AreaFilterViewController: UIViewController {
     }
 
     private lazy var myView = AreaFilterView()
+
+    private var isAllCheck: Bool {
+        return model.areaList.allSatisfy { model.selectedAreaIds.contains($0.id) }
+    }
 
     deinit {
         model.notificationCenter.removeObserver(self)

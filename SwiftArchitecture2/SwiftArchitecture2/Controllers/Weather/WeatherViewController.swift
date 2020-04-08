@@ -8,7 +8,6 @@
 import UIKit
 import Models
 import Views
-import SVProgressHUD
 
 final class WeatherViewController: UIViewController {
 
@@ -39,9 +38,7 @@ final class WeatherViewController: UIViewController {
             {
                 [weak self] notification in
                 if let weather = notification.userInfo?["weather"] as? Weather {
-                    if self?.isViewLoaded == true {
-                        self?.updateViews(weather: weather)
-                    }
+                    self?.updateViews(weather: weather)
                 }
         })
     }
@@ -60,14 +57,14 @@ final class WeatherViewController: UIViewController {
     }
 
     @objc private func refresh(_ sender: Any) {
-        SVProgressHUD.show()
+        showProgress()
         model.requestWeather { [weak self] result in
-            SVProgressHUD.dismiss()
+            self?.hideProgress()
             switch result {
             case .success:
                 break
-            case .failure:
-                self?.showAlert(message: "失敗")
+            case .failure(let error):
+                self?.showAlert(message: error.localizedDescription)
             }
         }
     }

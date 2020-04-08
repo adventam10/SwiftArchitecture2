@@ -8,7 +8,6 @@
 import UIKit
 import Models
 import Views
-import SVProgressHUD
 
 final class PrefectureListViewController: UIViewController {
 
@@ -28,7 +27,12 @@ final class PrefectureListViewController: UIViewController {
     private var isCheckFavoriteFilter = false
     private var favoriteIds = [String]()
     private var selectedAreaIds: Set<Int> = []
-    
+
+    private func registerModel() {
+        favoriteIds = model.dataStore.fetchAll()
+        selectedAreaIds = Set(Area.allCases.map { $0.id })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -58,11 +62,6 @@ final class PrefectureListViewController: UIViewController {
         }
     }
 
-    private func registerModel() {
-        favoriteIds = model.dataStore.fetchAll()
-        selectedAreaIds = Set(Area.allCases.map { $0.id })
-    }
-
     @objc private func filterByArea(_ sender: Any) {
         showAreaFilterViewController(button: sender as! UIButton)
     }
@@ -83,7 +82,7 @@ final class PrefectureListViewController: UIViewController {
                     delegate: self)
     }
 
-    func updateFavoriteIds(id: String) -> Result<[String], FavoritePrefectureDataStoreError> {
+    private func updateFavoriteIds(id: String) -> Result<[String], FavoritePrefectureDataStoreError> {
         if let _ = favoriteIds.firstIndex(of: id) {
             return model.dataStore.remove([id])
         } else {
@@ -111,16 +110,16 @@ extension PrefectureListViewController: UIPopoverPresentationControllerDelegate 
 extension PrefectureListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        SVProgressHUD.show()
+        showProgress()
         let data = tableDataList[indexPath.row]
         let weatherModel = WeatherModel(cityId: data.cityId)
         weatherModel.requestWeather { [weak self, weatherModel] result in
-            SVProgressHUD.dismiss()
+            self?.hideProgress()
             switch result {
             case .success:
                 self?.performSegue(withIdentifier: "showWeather", sender: weatherModel)
-            case .failure:
-                self?.showAlert(message: "失敗")
+            case .failure(let error):
+                self?.showAlert(message: error.localizedDescription)
             }
         }
         
