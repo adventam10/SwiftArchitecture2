@@ -98,14 +98,10 @@ final class WeatherFactory {
         return text
     }
 
-    
-
-    
-    
-    static func makeWeather(link: String, title: String, copyright: Copyright?,
-                     descriptionField: Description?, publicTime: String,
-                     location: Location?, forecast: Forecast?,
-                     pinpointLocation: Provider?) -> Weather? {
+    static func makeWeatherJSONText(link: String, title: String, copyright: Copyright?,
+                                    descriptionField: Description?, publicTime: String,
+                                    location: Location?, forecast: Forecast?,
+                                    pinpointLocation: Provider?) -> String {
         let pinpointLocations = (pinpointLocation != nil) ? encodeJSON(pinpointLocation) : ""
         let forecasts = (forecast != nil) ? encodeJSON(forecast) : ""
         let text = """
@@ -120,9 +116,9 @@ final class WeatherFactory {
         "forecasts": [\(forecasts)]
         }
         """
-        return try? JSONDecoder().decode(Weather.self, from: text.data(using: .utf8)!)
+        return text
     }
-    
+
     static func makeWeather(forecasts: [Forecast?]) -> Weather? {
         let forecastsText = forecasts.map { encodeJSON($0) }.joined(separator: ", ")
         let text = """
