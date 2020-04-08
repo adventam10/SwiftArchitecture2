@@ -20,8 +20,8 @@ final class TemperatureTests: XCTestCase {
     }
 
     func test_JSON_parse() {
-        let min = makeMin()
-        let max = makeMax()
+        let min = WeatherFactory.makeMin()
+        let max = WeatherFactory.makeMax()
         let jsonText = WeatherFactory.makeTemperatureJSONText(max: max, min: min)
         let temperature = try? JSONDecoder().decode(Temperature.self, from: jsonText.data(using: .utf8)!)
         XCTAssertNotNil(temperature)
@@ -29,17 +29,5 @@ final class TemperatureTests: XCTestCase {
         XCTAssertEqual(temperature?.max?.fahrenheit, max.fahrenheit)
         XCTAssertEqual(temperature?.min?.celsius, min.celsius)
         XCTAssertEqual(temperature?.min?.fahrenheit, min.fahrenheit)
-    }
-}
-
-extension TemperatureTests {
-    private func makeMax() -> Max {
-        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMax", fahrenheit: "fahrenheitMax")
-        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeMin() -> Max {
-        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMin", fahrenheit: "fahrenheitMin")
-        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
     }
 }

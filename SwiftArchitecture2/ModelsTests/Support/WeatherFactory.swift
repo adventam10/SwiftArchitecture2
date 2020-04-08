@@ -119,6 +119,61 @@ final class WeatherFactory {
         return text
     }
 
+    private static func encodeJSON<T>(_ json: T?) -> String where T: Codable {
+        guard let data = try? JSONEncoder().encode(json),
+            let jsonText = String(data: data, encoding: .utf8) else {
+                return "null"
+        }
+        return jsonText
+    }
+}
+
+extension WeatherFactory {
+    static func makeForecast() -> Forecast {
+        let jsonText = WeatherFactory.makeForecastJSONText(date: "date", dateLabel: "dateLabel", image: makeImage(), telop: "telop", temperature: makeTemperature())
+        return try! JSONDecoder().decode(Forecast.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeLocation() -> Location {
+        let jsonText = WeatherFactory.makeLocationJSONText(area: "area", city: "city", prefecture: "prefecture")
+        return try! JSONDecoder().decode(Location.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeDescription() -> Description {
+        let jsonText = WeatherFactory.makeDescriptionJSONText(text: "text", publicTime: "publicTime")
+        return try! JSONDecoder().decode(Description.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeCopyright() -> Copyright {
+        let jsonText = WeatherFactory.makeCopyrightJSONText(link: "link", title: "title", image: makeImage(), provider: makeProvider())
+        return try! JSONDecoder().decode(Copyright.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeImage() -> Image {
+        let jsonText = WeatherFactory.makeImageJSONText(link:"link", url: "url", title: "title", height: 11, width: 13)
+        return try! JSONDecoder().decode(Image.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeProvider() -> Provider {
+        let jsonText = WeatherFactory.makeProviderJSONText(link: "link", name: "name")
+        return try! JSONDecoder().decode(Provider.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeTemperature() -> Temperature {
+        let jsonText = WeatherFactory.makeTemperatureJSONText(max: makeMax(), min: makeMin())
+        return try! JSONDecoder().decode(Temperature.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeMin() -> Max {
+        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMin", fahrenheit: "fahrenheitMin")
+        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
+    }
+
+    static func makeMax() -> Max {
+        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMax", fahrenheit: "fahrenheitMax")
+        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
+    }
+
     static func makeWeather(forecasts: [Forecast?]) -> Weather? {
         let forecastsText = forecasts.map { encodeJSON($0) }.joined(separator: ", ")
         let text = """
@@ -134,13 +189,5 @@ final class WeatherFactory {
         }
         """
         return try? JSONDecoder().decode(Weather.self, from: text.data(using: .utf8)!)
-    }
-    
-    private static func encodeJSON<T>(_ json: T?) -> String where T: Codable {
-        guard let data = try? JSONEncoder().encode(json),
-            let jsonText = String(data: data, encoding: .utf8) else {
-                return "null"
-        }
-        return jsonText
     }
 }

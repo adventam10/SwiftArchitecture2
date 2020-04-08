@@ -23,8 +23,8 @@ final class ForecastTests: XCTestCase {
         let date = "date"
         let dateLabel = "dateLabel"
         let telop = "telop"
-        let image = makeImage()
-        let temperature = makeTemperature()
+        let image = WeatherFactory.makeImage()
+        let temperature = WeatherFactory.makeTemperature()
         let jsonText = WeatherFactory.makeForecastJSONText(date: date, dateLabel: dateLabel, image: image, telop: telop, temperature: temperature)
         let forecast = try? JSONDecoder().decode(Forecast.self, from: jsonText.data(using: .utf8)!)
         XCTAssertNotNil(forecast)
@@ -40,27 +40,5 @@ final class ForecastTests: XCTestCase {
         XCTAssertEqual(forecast?.temperature?.max?.fahrenheit, temperature.max?.fahrenheit)
         XCTAssertEqual(forecast?.temperature?.min?.celsius, temperature.min?.celsius)
         XCTAssertEqual(forecast?.temperature?.min?.fahrenheit, temperature.min?.fahrenheit)
-    }
-}
-
-extension ForecastTests {
-    private func makeImage() -> Image {
-        let jsonText = WeatherFactory.makeImageJSONText(link:"link", url: "url", title: "title", height: 11, width: 13)
-        return try! JSONDecoder().decode(Image.self, from: jsonText.data(using: .utf8)!)
-    }
-    
-    private func makeTemperature() -> Temperature {
-        let jsonText = WeatherFactory.makeTemperatureJSONText(max: makeMax(), min: makeMin())
-        return try! JSONDecoder().decode(Temperature.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeMin() -> Max {
-        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMin", fahrenheit: "fahrenheitMin")
-        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeMax() -> Max {
-        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMax", fahrenheit: "fahrenheitMax")
-        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
     }
 }

@@ -23,11 +23,11 @@ final class WeatherTests: XCTestCase {
         let link = "link"
         let title = "title"
         let publicTime = "publicTime"
-        let copyright = makeCopyright()
-        let description = makeDescription()
-        let location = makeLocation()
-        let pinpointLocation = makeProvider()
-        let forecast = makeForecast()
+        let copyright = WeatherFactory.makeCopyright()
+        let description = WeatherFactory.makeDescription()
+        let location = WeatherFactory.makeLocation()
+        let pinpointLocation = WeatherFactory.makeProvider()
+        let forecast = WeatherFactory.makeForecast()
         let jsonText = WeatherFactory.makeWeatherJSONText(link: link, title: title, copyright: copyright, descriptionField: description, publicTime: publicTime, location: location, forecast: forecast, pinpointLocation: pinpointLocation)
         let weather = try? JSONDecoder().decode(Weather.self, from: jsonText.data(using: .utf8)!)
         XCTAssertNotNil(weather)
@@ -68,53 +68,4 @@ final class WeatherTests: XCTestCase {
         XCTAssertEqual(weather?.forecasts?.first?.temperature?.min?.celsius, forecast.temperature?.min?.celsius)
         XCTAssertEqual(weather?.forecasts?.first?.temperature?.min?.fahrenheit, forecast.temperature?.min?.fahrenheit)
     }
-}
-
-extension WeatherTests {
-    private func makeForecast() -> Forecast {
-        let jsonText = WeatherFactory.makeForecastJSONText(date: "date", dateLabel: "dateLabel", image: makeImage(), telop: "telop", temperature: makeTemperature())
-        return try! JSONDecoder().decode(Forecast.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeLocation() -> Location {
-        let jsonText = WeatherFactory.makeLocationJSONText(area: "area", city: "city", prefecture: "prefecture")
-        return try! JSONDecoder().decode(Location.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeDescription() -> Description {
-        let jsonText = WeatherFactory.makeDescriptionJSONText(text: "text", publicTime: "publicTime")
-        return try! JSONDecoder().decode(Description.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeCopyright() -> Copyright {
-        let jsonText = WeatherFactory.makeCopyrightJSONText(link: "link", title: "title", image: makeImage(), provider: makeProvider())
-        return try! JSONDecoder().decode(Copyright.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeImage() -> Image {
-        let jsonText = WeatherFactory.makeImageJSONText(link:"link", url: "url", title: "title", height: 11, width: 13)
-        return try! JSONDecoder().decode(Image.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeProvider() -> Provider {
-        let jsonText = WeatherFactory.makeProviderJSONText(link: "link", name: "name")
-        return try! JSONDecoder().decode(Provider.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeTemperature() -> Temperature {
-        let jsonText = WeatherFactory.makeTemperatureJSONText(max: makeMax(), min: makeMin())
-        return try! JSONDecoder().decode(Temperature.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeMin() -> Max {
-        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMin", fahrenheit: "fahrenheitMin")
-        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeMax() -> Max {
-        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMax", fahrenheit: "fahrenheitMax")
-        return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    
 }

@@ -22,8 +22,8 @@ final class CopyrightTests: XCTestCase {
     func test_JSON_parse() {
         let link = "link"
         let title = "title"
-        let image = makeImage()
-        let provider = makeProvider()
+        let image = WeatherFactory.makeImage()
+        let provider = WeatherFactory.makeProvider()
         let jsonText = WeatherFactory.makeCopyrightJSONText(link: link, title: title, image: image, provider: provider)
         let copyright = try? JSONDecoder().decode(Copyright.self, from: jsonText.data(using: .utf8)!)
         XCTAssertNotNil(copyright)
@@ -36,17 +36,5 @@ final class CopyrightTests: XCTestCase {
         XCTAssertEqual(copyright?.image?.width, image.width)
         XCTAssertEqual(copyright?.provider?.first?.link, provider.link)
         XCTAssertEqual(copyright?.provider?.first?.name, provider.name)
-    }
-}
-
-extension CopyrightTests {
-    private func makeImage() -> Image {
-        let jsonText = WeatherFactory.makeImageJSONText(link:"link", url: "url", title: "title", height: 11, width: 13)
-        return try! JSONDecoder().decode(Image.self, from: jsonText.data(using: .utf8)!)
-    }
-
-    private func makeProvider() -> Provider {
-        let jsonText = WeatherFactory.makeProviderJSONText(link: "link", name: "name")
-        return try! JSONDecoder().decode(Provider.self, from: jsonText.data(using: .utf8)!)
     }
 }
