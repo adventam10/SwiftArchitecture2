@@ -20,13 +20,15 @@ final class ImageTests: XCTestCase {
     }
 
     func test_JSON_parse() {
+        let link = "link"
         let url = "url"
         let title = "title"
         let height = 12
         let width = 13
-        let jsonText = WeatherFactory.makeImageJSONText(url: url, title: title, height: height, width: width)
+        let jsonText = WeatherFactory.makeImageJSONText(link: link, url: url, title: title, height: height, width: width)
         let image = try? JSONDecoder().decode(Image.self, from: jsonText.data(using: .utf8)!)
         XCTAssertNotNil(image)
+        XCTAssertEqual(image?.link, link)
         XCTAssertEqual(image?.url, url)
         XCTAssertEqual(image?.title, title)
         XCTAssertEqual(image?.height, height)

@@ -10,9 +10,10 @@
 
 final class WeatherFactory {
 
-    static func makeImageJSONText(url: String, title: String, height: Int, width: Int) -> String {
+    static func makeImageJSONText(link: String, url: String, title: String, height: Int, width: Int) -> String {
         let text = """
         {
+        "link": "\(link)",
         "url": "\(url)",
         "title": "\(title)",
         "height": \(height),
@@ -60,24 +61,7 @@ final class WeatherFactory {
         return text
     }
 
-    
-    
-    
-    static func makeForecast(date: String, dateLabel: String, image: Image?,
-                      telop: String, temperature: Temperature?) -> Forecast? {
-        let text = """
-        {
-        "dateLabel": "\(dateLabel)",
-        "telop": "\(telop)",
-        "date": "\(date)",
-        "temperature": \(encodeJSON(temperature)),
-        "image": \(encodeJSON(image))
-        }
-        """
-        return try? JSONDecoder().decode(Forecast.self, from: text.data(using: .utf8)!)
-    }
-
-    static func makeCopyright(link: String, title: String, image: Image?, provider: Provider?) -> Copyright? {
+    static func makeCopyrightJSONText(link: String, title: String, image: Image?, provider: Provider?) -> String {
         let providers = (provider != nil) ? encodeJSON(provider) : ""
         let text = """
         {
@@ -87,18 +71,36 @@ final class WeatherFactory {
         "provider": [\(providers)]
         }
         """
-        return try? JSONDecoder().decode(Copyright.self, from: text.data(using: .utf8)!)
+        return text
     }
 
-    static func makeTemperature(max: Max?, min: Max?) -> Temperature? {
+    static func makeTemperatureJSONText(max: Max?, min: Max?) -> String {
         let text = """
         {
         "max": \(encodeJSON(max)),
         "min": \(encodeJSON(min))
         }
         """
-        return try? JSONDecoder().decode(Temperature.self, from: text.data(using: .utf8)!)
+        return text
     }
+
+    static func makeForecastJSONText(date: String, dateLabel: String, image: Image?,
+                      telop: String, temperature: Temperature?) -> String {
+        let text = """
+        {
+        "dateLabel": "\(dateLabel)",
+        "telop": "\(telop)",
+        "date": "\(date)",
+        "temperature": \(encodeJSON(temperature)),
+        "image": \(encodeJSON(image))
+        }
+        """
+        return text
+    }
+
+    
+
+    
     
     static func makeWeather(link: String, title: String, copyright: Copyright?,
                      descriptionField: Description?, publicTime: String,

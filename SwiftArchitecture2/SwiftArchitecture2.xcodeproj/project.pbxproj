@@ -27,6 +27,9 @@
 		0E2164F9243E188E00F7C09F /* DescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164F8243E188E00F7C09F /* DescriptionTests.swift */; };
 		0E2164FB243E18A400F7C09F /* ProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164FA243E18A400F7C09F /* ProviderTests.swift */; };
 		0E2164FD243E18BE00F7C09F /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164FC243E18BE00F7C09F /* ImageTests.swift */; };
+		0E2164FF243E1EA400F7C09F /* TemperatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164FE243E1EA400F7C09F /* TemperatureTests.swift */; };
+		0E216501243E1ED300F7C09F /* CopyrightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E216500243E1ED300F7C09F /* CopyrightTests.swift */; };
+		0E216503243E1F2400F7C09F /* ForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E216502243E1F2400F7C09F /* ForecastTests.swift */; };
 		0EC4A822243D5494009193FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4A821243D5494009193FF /* AppDelegate.swift */; };
 		0EC4A824243D5494009193FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4A823243D5494009193FF /* SceneDelegate.swift */; };
 		0EC4A829243D5494009193FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC4A827243D5494009193FF /* Main.storyboard */; };
@@ -178,6 +181,9 @@
 		0E2164F8243E188E00F7C09F /* DescriptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTests.swift; sourceTree = "<group>"; };
 		0E2164FA243E18A400F7C09F /* ProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderTests.swift; sourceTree = "<group>"; };
 		0E2164FC243E18BE00F7C09F /* ImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
+		0E2164FE243E1EA400F7C09F /* TemperatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTests.swift; sourceTree = "<group>"; };
+		0E216500243E1ED300F7C09F /* CopyrightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightTests.swift; sourceTree = "<group>"; };
+		0E216502243E1F2400F7C09F /* ForecastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTests.swift; sourceTree = "<group>"; };
 		0EC4A81E243D5494009193FF /* SwiftArchitecture2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftArchitecture2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC4A821243D5494009193FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC4A823243D5494009193FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -457,6 +463,9 @@
 		0EC4A864243D553F009193FF /* ModelsTests */ = {
 			isa = PBXGroup;
 			children = (
+				0E216502243E1F2400F7C09F /* ForecastTests.swift */,
+				0E2164FE243E1EA400F7C09F /* TemperatureTests.swift */,
+				0E216500243E1ED300F7C09F /* CopyrightTests.swift */,
 				0E2164FC243E18BE00F7C09F /* ImageTests.swift */,
 				0E2164FA243E18A400F7C09F /* ProviderTests.swift */,
 				0E2164F8243E188E00F7C09F /* DescriptionTests.swift */,
@@ -1217,8 +1226,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E2164F9243E188E00F7C09F /* DescriptionTests.swift in Sources */,
+				0E216503243E1F2400F7C09F /* ForecastTests.swift in Sources */,
 				0E2164F0243E15CB00F7C09F /* CityDataTests.swift in Sources */,
 				0E2164EE243E05A400F7C09F /* PrefectureListModelTests.swift in Sources */,
+				0E2164FF243E1EA400F7C09F /* TemperatureTests.swift in Sources */,
 				0E2164EA243DFE2E00F7C09F /* AreaFilterModelTests.swift in Sources */,
 				0E2164F7243E187E00F7C09F /* MaxTests.swift in Sources */,
 				0E2164FD243E18BE00F7C09F /* ImageTests.swift in Sources */,
@@ -1226,6 +1237,7 @@
 				0E2164FB243E18A400F7C09F /* ProviderTests.swift in Sources */,
 				0E2164F5243E186700F7C09F /* LocationTests.swift in Sources */,
 				0E2164EC243E036A00F7C09F /* AreaTests.swift in Sources */,
+				0E216501243E1ED300F7C09F /* CopyrightTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
