@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="QVU-EG-dUG" customClass="PrefectureListTableViewCell" customModule="Views" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QVU-EG-dUG" id="yrc-qI-DGm">
+                <rect key="frame" x="0.0" y="0.0" width="293" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKR-1x-D20">
+                        <rect key="frame" x="16" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="oPn-pr-f3J"/>
+                            <constraint firstAttribute="width" secondItem="iKR-1x-D20" secondAttribute="height" multiplier="1:1" id="tZQ-lq-kQF"/>
+                        </constraints>
+                        <state key="normal" image="btn_favorite_normal"/>
+                        <state key="selected" image="btn_favorite_selected"/>
+                        <connections>
+                            <action selector="changeFavorite:" destination="QVU-EG-dUG" eventType="touchUpInside" id="MyF-kH-EGp"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gm-vk-4Bn">
+                        <rect key="frame" x="78" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9gm-vk-4Bn" firstAttribute="leading" secondItem="iKR-1x-D20" secondAttribute="trailing" constant="32" id="VJC-L8-HxD"/>
+                    <constraint firstItem="9gm-vk-4Bn" firstAttribute="centerY" secondItem="yrc-qI-DGm" secondAttribute="centerY" id="WYr-oo-gwO"/>
+                    <constraint firstItem="iKR-1x-D20" firstAttribute="centerY" secondItem="yrc-qI-DGm" secondAttribute="centerY" id="jz3-eA-kcp"/>
+                    <constraint firstItem="iKR-1x-D20" firstAttribute="leading" secondItem="yrc-qI-DGm" secondAttribute="leading" constant="16" id="nWb-YK-Dvd"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9gm-vk-4Bn" secondAttribute="trailing" constant="16" id="vQN-bD-yLs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Smd-8R-nZw"/>
+            <connections>
+                <outlet property="favoriteButton" destination="iKR-1x-D20" id="a06-xH-eTw"/>
+                <outlet property="nameLabel" destination="9gm-vk-4Bn" id="vlk-6M-BMV"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="145"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_favorite_normal" width="128" height="128"/>
+        <image name="btn_favorite_selected" width="128" height="128"/>
+    </resources>
+</document>

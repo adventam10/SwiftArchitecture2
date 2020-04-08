@@ -1,0 +1,237 @@
+[
+    {
+        "cityId": "016010",
+        "name": "北海道",
+        "area": 0
+    },
+    {
+        "cityId": "020010",
+        "name": "青森",
+        "area": 1
+    },
+    {
+        "cityId": "030010",
+        "name": "岩手",
+        "area": 1
+    },
+    {
+        "cityId": "050010",
+        "name": "秋田",
+        "area": 1
+    },
+    {
+        "cityId": "040010",
+        "name": "宮城",
+        "area": 1
+    },
+    {
+        "cityId": "060010",
+        "name": "山形",
+        "area": 1
+    },
+    {
+        "cityId": "070010",
+        "name": "福島",
+        "area": 1
+    },
+    {
+        "cityId": "080010",
+        "name": "茨城",
+        "area": 2
+    },
+    {
+        "cityId": "090010",
+        "name": "栃木",
+        "area": 2
+    },
+    {
+        "cityId": "100010",
+        "name": "群馬",
+        "area": 2
+    },
+    {
+        "cityId": "110010",
+        "name": "埼玉",
+        "area": 2
+    },
+    {
+        "cityId": "120010",
+        "name": "千葉",
+        "area": 2
+    },
+    {
+        "cityId": "130010",
+        "name": "東京",
+        "area": 2
+    },
+    {
+        "cityId": "140010",
+        "name": "神奈川",
+        "area": 2
+    },
+    {
+        "cityId": "150010",
+        "name": "新潟",
+        "area": 3
+    },
+    {
+        "cityId": "160010",
+        "name": "富山",
+        "area": 3
+    },
+    {
+        "cityId": "170010",
+        "name": "石川",
+        "area": 3
+    },
+    {
+        "cityId": "180010",
+        "name": "福井",
+        "area": 3
+    },
+    {
+        "cityId": "190010",
+        "name": "山梨",
+        "area": 3
+    },
+    {
+        "cityId": "200010",
+        "name": "長野",
+        "area": 3
+    },
+    {
+        "cityId": "210010",
+        "name": "岐阜",
+        "area": 3
+    },
+    {
+        "cityId": "220010",
+        "name": "静岡",
+        "area": 3
+    },
+    {
+        "cityId": "230010",
+        "name": "愛知",
+        "area": 3
+    },
+    {
+        "cityId": "240010",
+        "name": "三重",
+        "area": 3
+    },
+    {
+        "cityId": "250010",
+        "name": "滋賀",
+        "area": 4
+    },
+    {
+        "cityId": "260010",
+        "name": "京都",
+        "area": 4
+    },
+    {
+        "cityId": "270000",
+        "name": "大阪",
+        "area": 4
+    },
+    {
+        "cityId": "280010",
+        "name": "兵庫",
+        "area": 4
+    },
+    {
+        "cityId": "290010",
+        "name": "奈良",
+        "area": 4
+    },
+    {
+        "cityId": "300010",
+        "name": "和歌山",
+        "area": 4
+    },
+    {
+        "cityId": "310010",
+        "name": "鳥取",
+        "area": 5
+    },
+    {
+        "cityId": "320010",
+        "name": "島根",
+        "area": 5
+    },
+    {
+        "cityId": "330010",
+        "name": "岡山",
+        "area": 5
+    },
+    {
+        "cityId": "340010",
+        "name": "広島",
+        "area": 5
+    },
+    {
+        "cityId": "350020",
+        "name": "山口",
+        "area": 5
+    },
+    {
+        "cityId": "360010",
+        "name": "徳島",
+        "area": 6
+    },
+    {
+        "cityId": "370000",
+        "name": "香川",
+        "area": 6
+    },
+    {
+        "cityId": "380010",
+        "name": "愛媛",
+        "area": 6
+    },
+    {
+        "cityId": "390010",
+        "name": "高知",
+        "area": 6
+    },
+    {
+        "cityId": "400010",
+        "name": "福岡",
+        "area": 7
+    },
+    {
+        "cityId": "410010",
+        "name": "佐賀",
+        "area": 7
+    },
+    {
+        "cityId": "420010",
+        "name": "長崎",
+        "area": 7
+    },
+    {
+        "cityId": "430010",
+        "name": "熊本",
+        "area": 7
+    },
+    {
+        "cityId": "440010",
+        "name": "大分",
+        "area": 7
+    },
+    {
+        "cityId": "450010",
+        "name": "宮崎",
+        "area": 7
+    },
+    {
+        "cityId": "460010",
+        "name": "鹿児島",
+        "area": 7
+    },
+    {
+        "cityId": "471010",
+        "name": "沖縄",
+        "area": 7
+    }
+]

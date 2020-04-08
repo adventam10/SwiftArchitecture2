@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AreaFilterView" customModule="Views" customModuleProvider="target">
+            <connections>
+                <outlet property="allCheckButton" destination="ZkW-zL-tUJ" id="dJh-0e-kNB"/>
+                <outlet property="tableView" destination="xQw-AB-FHp" id="qXP-vV-RzM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pRK-4c-EZk">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiU-hu-Lrn">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkW-zL-tUJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="すべて" image="btn_check_normal">
+                                        <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
+                                    <state key="selected" image="btn_check_selected"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ZkW-zL-tUJ" secondAttribute="trailing" id="4it-og-kpq"/>
+                                <constraint firstAttribute="height" constant="44" id="Ajb-f0-NYy"/>
+                                <constraint firstItem="ZkW-zL-tUJ" firstAttribute="leading" secondItem="ZiU-hu-Lrn" secondAttribute="leading" id="QE7-To-L1H"/>
+                                <constraint firstAttribute="bottom" secondItem="ZkW-zL-tUJ" secondAttribute="bottom" id="eZh-Xp-fqL"/>
+                                <constraint firstItem="ZkW-zL-tUJ" firstAttribute="top" secondItem="ZiU-hu-Lrn" secondAttribute="top" id="wpL-KF-7ZQ"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awE-yO-lHg" userLabel="View - separator">
+                            <rect key="frame" x="0.0" y="44" width="414" height="0.5"/>
+                            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="MN5-i2-Hes"/>
+                            </constraints>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xQw-AB-FHp">
+                            <rect key="frame" x="0.0" y="44.5" width="414" height="773.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </tableView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="pRK-4c-EZk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FPM-IB-C7z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pRK-4c-EZk" secondAttribute="bottom" id="KO9-gJ-b7k"/>
+                <constraint firstItem="pRK-4c-EZk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nDq-UR-8zx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pRK-4c-EZk" secondAttribute="trailing" id="ree-zB-pos"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="139" y="149"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_check_normal" width="30" height="30"/>
+        <image name="btn_check_selected" width="30" height="30"/>
+    </resources>
+</document>
