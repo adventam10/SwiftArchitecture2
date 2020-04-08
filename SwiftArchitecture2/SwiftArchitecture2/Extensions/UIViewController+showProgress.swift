@@ -2,20 +2,19 @@
 //  UIViewController+showProgress.swift
 //  SwiftArchitecture2
 //
-//  Created by makoto on 2020/04/08.
+//  Created by am10 on 2020/04/08.
 //  Copyright © 2020 am10. All rights reserved.
 //
 
 import UIKit
-import SVProgressHUD
+import PKHUD
 
 extension UIViewController {
     func showProgress() {
-        SVProgressHUD.setDefaultMaskType(.black)
-        SVProgressHUD.show()
+        HUD.show(.progress)
     }
     
     func hideProgress() {
-        SVProgressHUD.dismiss()
+        HUD.hide()
     }
 }

@@ -19,7 +19,7 @@ target 'SwiftArchitecture2' do
   use_frameworks!
 
   # Pods for SwiftArchitecture2
-  pod 'SVProgressHUD'
+  pod 'PKHUD', '5.2.1'
 
   target 'SwiftArchitecture2Tests' do
     inherit! :search_paths
