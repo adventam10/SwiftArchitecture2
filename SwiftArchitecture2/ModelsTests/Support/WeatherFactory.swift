@@ -129,8 +129,8 @@ final class WeatherFactory {
 }
 
 extension WeatherFactory {
-    static func makeForecast() -> Forecast {
-        let jsonText = WeatherFactory.makeForecastJSONText(date: "date", dateLabel: "dateLabel", image: makeImage(), telop: "telop", temperature: makeTemperature())
+    static func makeForecast(temperature: Temperature? = makeTemperature(), image: Image? = makeImage()) -> Forecast {
+        let jsonText = WeatherFactory.makeForecastJSONText(date: "date", dateLabel: "dateLabel", image: image, telop: "telop", temperature: temperature)
         return try! JSONDecoder().decode(Forecast.self, from: jsonText.data(using: .utf8)!)
     }
 
@@ -149,8 +149,8 @@ extension WeatherFactory {
         return try! JSONDecoder().decode(Copyright.self, from: jsonText.data(using: .utf8)!)
     }
 
-    static func makeImage() -> Image {
-        let jsonText = WeatherFactory.makeImageJSONText(link:"link", url: "url", title: "title", height: 11, width: 13)
+    static func makeImage(url: String = "url") -> Image {
+        let jsonText = WeatherFactory.makeImageJSONText(link:"link", url: url, title: "title", height: 11, width: 13)
         return try! JSONDecoder().decode(Image.self, from: jsonText.data(using: .utf8)!)
     }
 
@@ -159,8 +159,8 @@ extension WeatherFactory {
         return try! JSONDecoder().decode(Provider.self, from: jsonText.data(using: .utf8)!)
     }
 
-    static func makeTemperature() -> Temperature {
-        let jsonText = WeatherFactory.makeTemperatureJSONText(max: makeMax(), min: makeMin())
+    static func makeTemperature(max: Max? = makeMax(), min: Max? = makeMin()) -> Temperature {
+        let jsonText = WeatherFactory.makeTemperatureJSONText(max: max, min: min)
         return try! JSONDecoder().decode(Temperature.self, from: jsonText.data(using: .utf8)!)
     }
 
@@ -169,8 +169,8 @@ extension WeatherFactory {
         return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
     }
 
-    static func makeMax() -> Max {
-        let jsonText = WeatherFactory.makeMaxJSONText(celsius: "celsiusMax", fahrenheit: "fahrenheitMax")
+    static func makeMax(celsius: String = "celsiusMax", fahrenheit: String = "fahrenheitMax") -> Max {
+        let jsonText = WeatherFactory.makeMaxJSONText(celsius: celsius, fahrenheit: fahrenheit)
         return try! JSONDecoder().decode(Max.self, from: jsonText.data(using: .utf8)!)
     }
 
