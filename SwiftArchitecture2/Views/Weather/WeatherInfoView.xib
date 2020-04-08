@@ -44,7 +44,7 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_no_image" translatesAutoresizingMaskIntoConstraints="NO" id="13r-Gp-UsP">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" image="icon_no_image" translatesAutoresizingMaskIntoConstraints="NO" id="13r-Gp-UsP">
                             <rect key="frame" x="0.0" y="53" width="414" height="414"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="13r-Gp-UsP" secondAttribute="height" multiplier="1:1" id="MtX-Aj-S0A"/>
