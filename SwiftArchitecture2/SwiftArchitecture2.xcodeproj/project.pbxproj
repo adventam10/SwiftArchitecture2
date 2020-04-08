@@ -17,6 +17,7 @@
 		0E2164E3243DC12F00F7C09F /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164E2243DC12F00F7C09F /* WeatherAPI.swift */; };
 		0E2164E6243DC76700F7C09F /* WeatherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164E5243DC76700F7C09F /* WeatherExtensions.swift */; };
 		0E2164E8243DEB7F00F7C09F /* UIViewController+showProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164E7243DEB7F00F7C09F /* UIViewController+showProgress.swift */; };
+		0E2164EA243DFE2E00F7C09F /* AreaFilterModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2164E9243DFE2E00F7C09F /* AreaFilterModelTests.swift */; };
 		0EC4A822243D5494009193FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4A821243D5494009193FF /* AppDelegate.swift */; };
 		0EC4A824243D5494009193FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4A823243D5494009193FF /* SceneDelegate.swift */; };
 		0EC4A829243D5494009193FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC4A827243D5494009193FF /* Main.storyboard */; };
@@ -159,6 +160,7 @@
 		0E2164E2243DC12F00F7C09F /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		0E2164E5243DC76700F7C09F /* WeatherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherExtensions.swift; sourceTree = "<group>"; };
 		0E2164E7243DEB7F00F7C09F /* UIViewController+showProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showProgress.swift"; sourceTree = "<group>"; };
+		0E2164E9243DFE2E00F7C09F /* AreaFilterModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaFilterModelTests.swift; sourceTree = "<group>"; };
 		0EC4A81E243D5494009193FF /* SwiftArchitecture2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftArchitecture2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC4A821243D5494009193FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC4A823243D5494009193FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				0EC4A865243D553F009193FF /* ModelsTests.swift */,
+				0E2164E9243DFE2E00F7C09F /* AreaFilterModelTests.swift */,
 				0EC4A867243D553F009193FF /* Info.plist */,
 			);
 			path = ModelsTests;
@@ -1181,6 +1184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E2164EA243DFE2E00F7C09F /* AreaFilterModelTests.swift in Sources */,
 				0EC4A866243D553F009193FF /* ModelsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
