@@ -104,7 +104,7 @@ extension PrefectureListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showProgress()
         let data = tableDataList[indexPath.row]
-        let weatherModel = WeatherModel(cityId: data.cityId)
+        let weatherModel = WeatherModel(cityId: data.cityId, apiClient: DefaultAPIClient.shared)
         weatherModel.requestWeather { [weak self, weatherModel] result in
             self?.hideProgress()
             switch result {
@@ -114,7 +114,6 @@ extension PrefectureListViewController: UITableViewDelegate {
                 self?.showAlert(message: error.localizedDescription)
             }
         }
-        
     }
 }
 

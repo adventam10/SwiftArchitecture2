@@ -10,9 +10,14 @@ import Foundation
 
 public class WeatherAPI {
 
+    private let apiClient: APIClient
+
+    public init(apiClient: APIClient) {
+        self.apiClient = apiClient
+    }
+
     public func requestWeather(cityId: String, completion: @escaping (Result<Weather, APIError>) -> Void) {
-        let api = GetWeatherAPI(cityId: cityId)
-        APIClient.request(api.makeRequest()) { result in
+        apiClient.request(WeatherAPIRequest.getWeather(cityId: cityId)) { result in
             switch result {
             case .success(let data):
                 if let result = try? JSONDecoder().decode(Weather.self, from: data) {
@@ -45,10 +50,13 @@ public extension WeatherRequest {
     }
 }
 
-public struct GetWeatherAPI: WeatherRequest {
+public enum WeatherAPIRequest: WeatherRequest {
 
-    public let cityId: String
+    case getWeather(cityId: String)
     public var parameter: [String : Any] {
-        return ["city": cityId]
+        switch self {
+        case .getWeather(let cityId):
+            return ["city": cityId]
+        }
     }
 }

@@ -18,13 +18,14 @@ public final class WeatherModel {
                                     userInfo: ["weather": weather!])
         }
     }
-    private let weatherAPI = WeatherAPI()
+    private let weatherAPI: WeatherAPI
     private let cityId: String
 
-    public init(cityId: String) {
+    public init(cityId: String, apiClient: APIClient) {
         self.cityId = cityId
+        self.weatherAPI = .init(apiClient: apiClient)
     }
-    
+
     public func requestWeather(_ completion: @escaping (Result<Weather, APIError>) -> Void) {
         weatherAPI.requestWeather(cityId: cityId) { [weak self] result in
             DispatchQueue.main.async {

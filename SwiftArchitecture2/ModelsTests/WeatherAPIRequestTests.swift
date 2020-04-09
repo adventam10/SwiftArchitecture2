@@ -1,5 +1,5 @@
 //
-//  GetWeatherAPITests.swift
+//  WeatherAPIRequestTests.swift
 //  ModelsTests
 //
 //  Created by am10 on 2020/04/09.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Models
 
-final class GetWeatherAPITests: XCTestCase {
+final class WeatherAPIRequestTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,9 +19,9 @@ final class GetWeatherAPITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_makeRequest() {
+    func test_getWeather_makeRequest() {
         let cityId = "cityId"
-        let api = GetWeatherAPI(cityId: cityId)
+        let api = WeatherAPIRequest.getWeather(cityId: cityId)
         let request = api.makeRequest()
         XCTAssertEqual(request.url, URL(string: "http://weather.livedoor.com/forecast/webservice/json/v1?city=\(cityId)")!)
         XCTAssertEqual(request.httpMethod, "GET")

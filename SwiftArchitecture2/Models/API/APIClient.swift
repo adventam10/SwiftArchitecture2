@@ -85,9 +85,18 @@ public extension Request {
     }
 }
 
-public class APIClient {
-    static func request(_ request: URLRequest, completion: @escaping (Result<Data, APIError>) -> Void) {
-        AF.request(request).responseData { response in
+public protocol APIClient {
+    func request(_ request: Request, completion: @escaping (Result<Data, APIError>) -> Void)
+}
+
+public final class DefaultAPIClient: APIClient {
+
+    public static let shared = DefaultAPIClient()
+
+    private init() {}
+
+    public func request(_ request: Request, completion: @escaping (Result<Data, APIError>) -> Void) {
+        AF.request(request.makeRequest()).responseData { response in
             switch response.result {
             case .success(let data):
                 completion(.success(data))
