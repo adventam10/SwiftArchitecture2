@@ -77,6 +77,9 @@ public extension Request {
         headerFields.forEach { key, value in
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
+        if case .post = method {
+            urlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        }
         urlRequest.setValue(accept, forHTTPHeaderField: "Accept")
         return urlRequest
     }

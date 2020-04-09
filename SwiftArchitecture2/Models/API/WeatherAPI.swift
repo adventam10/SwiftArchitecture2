@@ -24,7 +24,6 @@ public class WeatherAPI {
                 completion(.failure(error))
             }
         }
-        
     }
 }
 
@@ -36,11 +35,11 @@ public extension WeatherRequest {
     var baseURL: URL {
         return URL(string: "http://weather.livedoor.com/forecast/webservice/json/v1")!
     }
-    
+
     var method: HTTPMethod {
         return .get
     }
-    
+
     var path: String {
         return ""
     }
