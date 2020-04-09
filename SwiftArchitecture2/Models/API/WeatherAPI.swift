@@ -38,7 +38,13 @@ public protocol WeatherRequest: Request {
 public extension WeatherRequest {
 
     var baseURL: URL {
-        return URL(string: "http://weather.livedoor.com/forecast/webservice/json/v1")!
+        #if DEBUG
+          // デバッグ（必要であればここでURLを開発用途化に変える）*別モジュールなのでDUMMYは使えない
+          return URL(string: "http://weather.livedoor.com/forecast/webservice/json/v1")!
+        #else
+          // 本番
+          return URL(string: "http://weather.livedoor.com/forecast/webservice/json/v1")!
+        #endif
     }
 
     var method: HTTPMethod {

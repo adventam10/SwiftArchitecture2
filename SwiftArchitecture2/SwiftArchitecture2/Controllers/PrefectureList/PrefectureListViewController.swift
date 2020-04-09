@@ -90,6 +90,15 @@ final class PrefectureListViewController: UIViewController {
         myView.favoriteFilterButton.isSelected = isCheckFavoriteFilter
         myView.tableView.reloadData()
     }
+
+    // この処理はもっとどこか共通の場所でやるべきかもしれない
+    private func makeAPIClient() -> APIClient {
+        #if DUMMY
+        return DummyAPIClient.shared
+        #else
+        return DefaultAPIClient.shared
+        #endif
+    }
 }
 
 extension PrefectureListViewController: UIPopoverPresentationControllerDelegate {
@@ -104,7 +113,7 @@ extension PrefectureListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showProgress()
         let data = tableDataList[indexPath.row]
-        let weatherModel = WeatherModel(cityId: data.cityId, apiClient: DefaultAPIClient.shared)
+        let weatherModel = WeatherModel(cityId: data.cityId, apiClient: makeAPIClient())
         weatherModel.requestWeather { [weak self, weatherModel] result in
             self?.hideProgress()
             switch result {
