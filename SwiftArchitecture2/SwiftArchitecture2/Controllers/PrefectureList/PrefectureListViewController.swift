@@ -25,11 +25,9 @@ final class PrefectureListViewController: UIViewController {
         }
     }
     private var isCheckFavoriteFilter = false
-    private var favoriteIds = [String]()
     private var selectedAreaIds: Set<Int> = []
 
     private func registerModel() {
-        favoriteIds = model.dataStore.fetchAll()
         selectedAreaIds = Set(Area.allCases.map { $0.id })
     }
 
@@ -82,16 +80,10 @@ final class PrefectureListViewController: UIViewController {
                     delegate: self)
     }
 
-    private func updateFavoriteIds(id: String) -> Result<[String], FavoritePrefectureDataStoreError> {
-        if let _ = favoriteIds.firstIndex(of: id) {
-            return model.dataStore.remove([id])
-        } else {
-            return model.dataStore.add([id])
-        }
-    }
-
     private func filteredTableDataList() {
-        tableDataList = model.prefectureFiltered(isFilterFavorite: isCheckFavoriteFilter, favoriteIds: favoriteIds, selectedAreaIds: selectedAreaIds)
+        tableDataList = model.prefectureFiltered(isFilterFavorite: isCheckFavoriteFilter,
+                                                 favoriteIds: model.favoriteIds,
+                                                 selectedAreaIds: selectedAreaIds)
     }
 
     private func updateViews() {
@@ -137,7 +129,7 @@ extension PrefectureListViewController: UITableViewDataSource {
         cell.delegate = self
         let data = tableDataList[indexPath.row]
         cell.nameLabel.text = data.name
-        cell.favoriteButton.isSelected = favoriteIds.contains(data.cityId)
+        cell.favoriteButton.isSelected = model.favoriteIds.contains(data.cityId)
         return cell
     }
 }
@@ -149,12 +141,13 @@ extension PrefectureListViewController: PrefectureListTableViewCellDelegate {
             return
         }
         let data = tableDataList[indexPath.row]
-        let result = updateFavoriteIds(id: data.cityId)
+        let result = model.updateFavoriteIds(id: data.cityId)
         switch result {
-        case .success(let ids):
-            favoriteIds = ids
+        case .success:
             filteredTableDataList()
         case .failure:
+            // アラートを出すほどではない？？
+            print("お気に入りの保存に失敗しました")
             return
         }
     }

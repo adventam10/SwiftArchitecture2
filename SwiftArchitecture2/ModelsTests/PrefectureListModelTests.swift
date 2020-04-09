@@ -30,6 +30,51 @@ final class PrefectureListModelTests: XCTestCase {
         XCTAssertEqual(model.prefectureList.count, allPrefectureCount)
     }
 
+    func test_updateFavoriteIds_add() {
+        let dataStore = FakeDataStore()
+        dataStore.list = ["1", "2"]
+        let model = PrefectureListModel(dataStore: dataStore)
+        let result = model.updateFavoriteIds(id: "3")
+        let expectedValue = ["1", "2", "3"]
+        switch result {
+        case .success(let favoriteIds):
+            XCTAssertEqual(favoriteIds.count, expectedValue.count)
+            XCTAssertTrue(favoriteIds.allSatisfy { expectedValue.contains($0) })
+        default:
+            XCTFail("データの保存に失敗しました")
+        }
+    }
+
+    func test_updateFavoriteIds_add_when_empty() {
+        let dataStore = FakeDataStore()
+        dataStore.list = []
+        let model = PrefectureListModel(dataStore: dataStore)
+        let result = model.updateFavoriteIds(id: "3")
+        let expectedValue = ["3"]
+        switch result {
+        case .success(let favoriteIds):
+            XCTAssertEqual(favoriteIds.count, expectedValue.count)
+            XCTAssertTrue(favoriteIds.allSatisfy { expectedValue.contains($0) })
+        default:
+            XCTFail("データの保存に失敗しました")
+        }
+    }
+
+    func test_updateFavoriteIds_remove() {
+        let dataStore = FakeDataStore()
+        dataStore.list = ["1", "2"]
+        let model = PrefectureListModel(dataStore: dataStore)
+        let result = model.updateFavoriteIds(id: "2")
+        let expectedValue = ["1"]
+        switch result {
+        case .success(let favoriteIds):
+            XCTAssertEqual(favoriteIds.count, expectedValue.count)
+            XCTAssertTrue(favoriteIds.allSatisfy { expectedValue.contains($0) })
+        default:
+            XCTFail("データの保存に失敗しました")
+        }
+    }
+
     func test_prefectureFiltered_where_isFilterFavorite_true_favoriteIds_empty_selectedAreaIds_empty() {
         let dataStore = FakeDataStore()
         let model = PrefectureListModel(dataStore: dataStore)

@@ -12,9 +12,12 @@ public final class PrefectureListModel {
 
     public let prefectureList: [CityData]
     public let dataStore: FavoritePrefectureDataStore
+    public private(set) var favoriteIds: [String]
+
     public init(dataStore: FavoritePrefectureDataStore) {
         self.prefectureList = Self.loadCityDataList()
         self.dataStore = dataStore
+        self.favoriteIds = dataStore.fetchAll()
     }
 
     private static func loadCityDataList() -> [CityData] {
@@ -37,5 +40,18 @@ public final class PrefectureListModel {
                 return selectedAreaIds.contains($0.area)
             }
         }
+    }
+
+    public func updateFavoriteIds(id: String) -> Result<[String], FavoritePrefectureDataStoreError> {
+        let result: Result<[String], FavoritePrefectureDataStoreError>
+        if favoriteIds.contains(id) {
+            result = dataStore.remove([id])
+        } else {
+            result = dataStore.add([id])
+        }
+        if case let .success(ids) = result {
+            favoriteIds = ids
+        }
+        return result
     }
 }
