@@ -1,6 +1,0 @@
-framework module Pods_SwiftArchitecture2_SwiftArchitecture2UITests {
-  umbrella header "Pods-SwiftArchitecture2-SwiftArchitecture2UITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

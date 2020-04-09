@@ -32,23 +32,9 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0EC4A855243D553F009193FF"
-            BuildableName = "Models.framework"
-            BlueprintName = "Models"
-            ReferencedContainer = "container:SwiftArchitecture2.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
             BlueprintIdentifier = "0EC4A81D243D5494009193FF"
             BuildableName = "SwiftArchitecture2.app"
             BlueprintName = "SwiftArchitecture2"
-            ReferencedContainer = "container:SwiftArchitecture2.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0EC4A878243D555F009193FF"
-            BuildableName = "Views.framework"
-            BlueprintName = "Views"
             ReferencedContainer = "container:SwiftArchitecture2.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -70,26 +56,6 @@
                BlueprintIdentifier = "0EC4A83E243D5496009193FF"
                BuildableName = "SwiftArchitecture2UITests.xctest"
                BlueprintName = "SwiftArchitecture2UITests"
-               ReferencedContainer = "container:SwiftArchitecture2.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0EC4A85D243D553F009193FF"
-               BuildableName = "ModelsTests.xctest"
-               BlueprintName = "ModelsTests"
-               ReferencedContainer = "container:SwiftArchitecture2.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0EC4A880243D555F009193FF"
-               BuildableName = "ViewsTests.xctest"
-               BlueprintName = "ViewsTests"
                ReferencedContainer = "container:SwiftArchitecture2.xcodeproj">
             </BuildableReference>
          </TestableReference>
