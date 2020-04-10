@@ -3,9 +3,13 @@
 
 iOSアプリのアーキテクチャについて考える
 
-master は Cocoa MVC を意識して作成しました。
-
 [livedoor天気のWeb API](http://weather.livedoor.com/weather_hacks/webservice)(商用利用不可)を利用した各都道府県の天気を表示するアプリ。
+
+## ブランチ
+* master  
+Cocoa MVC を意識して作成しました。
+* fat_fat_fat  
+画面ごとのViewControllerのみで作成しました。（これこそが FatViewController??）
 
 ## 環境
 * Xcode 11.4
