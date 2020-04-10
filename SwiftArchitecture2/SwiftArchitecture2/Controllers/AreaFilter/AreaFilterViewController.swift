@@ -25,8 +25,9 @@ final class AreaFilterViewController: UIViewController {
 
     private lazy var myView = AreaFilterView()
 
+    private var tableDataList: [Area] = []
     private var isAllCheck: Bool {
-        return model.areaList.allSatisfy { model.selectedAreaIds.contains($0.id) }
+        return tableDataList.allSatisfy { model.selectedAreaIds.contains($0.id) }
     }
 
     deinit {
@@ -47,6 +48,7 @@ final class AreaFilterViewController: UIViewController {
                     }
                 }
         })
+        tableDataList = model.areaList
     }
 
     override func viewDidLoad() {
@@ -75,7 +77,7 @@ final class AreaFilterViewController: UIViewController {
 extension AreaFilterViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let area = model.areaList[indexPath.row]
+        let area = tableDataList[indexPath.row]
         model.updateAreaIds(id: area.id)
     }
 }
@@ -83,12 +85,12 @@ extension AreaFilterViewController: UITableViewDelegate {
 extension AreaFilterViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.areaList.count
+        return tableDataList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myView.cellIdentifier, for: indexPath) as! AreaFilterTableViewCell
-        let area = model.areaList[indexPath.row]
+        let area = tableDataList[indexPath.row]
         cell.nameLabel.text = area.name
         cell.checkButton.isSelected = model.selectedAreaIds.contains(area.id)
         return cell
