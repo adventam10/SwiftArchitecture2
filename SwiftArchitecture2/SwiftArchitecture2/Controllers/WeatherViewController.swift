@@ -152,6 +152,7 @@ final class WeatherViewController: UIViewController {
 
         let imageView = { () -> UIImageView in
             let image = UIImageView()
+            image.contentMode = .scaleAspectFit
             image.tag = ItemTag.imageView.rawValue
             image.translatesAutoresizingMaskIntoConstraints = false
             return image
