@@ -1,5 +1,9 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '12.0'
+
+def common_install_pods
+  pod 'SwiftLint', '0.39.2'
+end
 
 target 'Models' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -7,6 +11,7 @@ target 'Models' do
 
   # Pods for Models
   pod 'Alamofire', '5.1.0'
+  common_install_pods
 
   target 'ModelsTests' do
     # Pods for testing
@@ -20,6 +25,7 @@ target 'SwiftArchitecture2' do
 
   # Pods for SwiftArchitecture2
   pod 'PKHUD', '5.2.1'
+  common_install_pods
 
   target 'SwiftArchitecture2Tests' do
     inherit! :search_paths
@@ -37,6 +43,7 @@ target 'Views' do
   use_frameworks!
 
   # Pods for Views
+  common_install_pods
 
   target 'ViewsTests' do
     # Pods for testing

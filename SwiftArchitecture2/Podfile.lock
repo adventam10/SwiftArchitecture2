@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.1.0)
   - PKHUD (5.2.1)
+  - SwiftLint (0.39.2)
 
 DEPENDENCIES:
   - Alamofire (= 5.1.0)
   - PKHUD (= 5.2.1)
+  - SwiftLint (= 0.39.2)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - PKHUD
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: c7f6a46e7fc51adb63cbe45419fc036ec873d9be
+PODFILE CHECKSUM: 7b91d29077214280a2151221c4d570c9fd561b00
 
 COCOAPODS: 1.9.0

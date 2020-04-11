@@ -1,0 +1,64 @@
+excluded:
+  - Pods
+  - SwiftArchitecture2Tests
+  - SwiftArchitecture2UITests
+  - ModelsTests
+  - ViewsTests
+
+opt_in_rules:
+  - anyobject_protocol  
+  - array_init
+  - closure_spacing
+  - collection_alignment
+  - conditional_returns_on_newline
+  - contains_over_first_not_nil
+  - discouraged_object_literal
+  - empty_count
+  - empty_string
+  - identical_operands
+  - implicit_return
+  - joined_default_parameter
+  - last_where
+  - legacy_random
+  - legacy_multiple
+  - lower_acl_than_parent
+  - modifier_order
+  - operator_usage_whitespace
+  - operator_whitespace
+  - overridden_super_call
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - trailing_closure
+  - unavailable_function
+  - unused_import
+  - unused_private_declaration
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+
+identifier-name:
+  min_length:
+    warning: 1
+    error: 1
+function_parameter_count:
+  warning: 6
+line_length: 
+  warning: 300
+  error: 300
+type_name:
+  min_length:
+    warning: 2
+    error: 2
+  max_length:
+    warning: 50
+    error: 60
+large_tuple:
+  warning: 3
+  error: 4
+
+disabled_rules:
+  - force_cast
+  - trailing_whitespace
+  - force_try
