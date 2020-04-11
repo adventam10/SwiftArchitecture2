@@ -6,7 +6,7 @@ target 'Models' do
   use_frameworks!
 
   # Pods for Models
-  pod 'Alamofire'
+  pod 'Alamofire', '5.1.0'
 
   target 'ModelsTests' do
     # Pods for testing
