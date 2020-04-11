@@ -8,7 +8,7 @@ iOSアプリのアーキテクチャについて考える
 ## ブランチ
 * master  
 Cocoa MVC を意識して作成しました。
-* fat_fat_fat  
+* fat\_fat_fat  
 画面ごとのViewControllerのみで作成しました。（これこそが FatViewController??）
 
 ## 環境
@@ -17,13 +17,15 @@ Cocoa MVC を意識して作成しました。
 * iPhone (Portrait)
 
 ## 使用ライブラリ
-Cocoa Pods で導入
+Cocoa Pods で導入（プル後にすぐビルドできるように Carthage ではなく Cocoa Pods を利用）
 
 | ライブラリ | 用途 |
 | --- | --- |
 | [pkluz/PKHUD](https://github.com/pkluz/PKHUD) | プログレスの表示 |
 | [Alamofire/Alamofire](https://github.com/Alamofire/Alamofire) | 通信 |
 | [Ahmed-Ali/JSONExport](https://github.com/Ahmed-Ali/JSONExport) | JSONパース用（ファイルを作成） |
+| [realm/SwiftLint](https://github.com/realm/SwiftLint) | Lint ツール |
+| [mono0926/LicensePlist](https://github.com/mono0926/LicensePlist) | ライセンス表記用（ライセンス表記は大事😇） |
 
 ## Scheme
 * SwiftArchitecture2 通信してデータを取得する
