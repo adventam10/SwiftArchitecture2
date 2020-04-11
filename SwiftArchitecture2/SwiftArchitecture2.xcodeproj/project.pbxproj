@@ -32,6 +32,7 @@
 		0E216503243E1F2400F7C09F /* ForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E216502243E1F2400F7C09F /* ForecastTests.swift */; };
 		0E216505243E252100F7C09F /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E216504243E252100F7C09F /* WeatherTests.swift */; };
 		0E216507243E2CA000F7C09F /* WeatherExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E216506243E2CA000F7C09F /* WeatherExtensionsTests.swift */; };
+		0E74967E24420A960011B28C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E74967D24420A960011B28C /* Settings.bundle */; };
 		0EB4B4F8243EA92A006752EF /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB4B4F7243EA92A006752EF /* APIErrorTests.swift */; };
 		0EB4B4FA243EAA1B006752EF /* WeatherAPIRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB4B4F9243EAA1B006752EF /* WeatherAPIRequestTests.swift */; };
 		0EB4B50D243F0261006752EF /* DummyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB4B50C243F0261006752EF /* DummyAPIClient.swift */; };
@@ -193,6 +194,7 @@
 		0E216502243E1F2400F7C09F /* ForecastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTests.swift; sourceTree = "<group>"; };
 		0E216504243E252100F7C09F /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		0E216506243E2CA000F7C09F /* WeatherExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherExtensionsTests.swift; sourceTree = "<group>"; };
+		0E74967D24420A960011B28C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0EB4B4F7243EA92A006752EF /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
 		0EB4B4F9243EAA1B006752EF /* WeatherAPIRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIRequestTests.swift; sourceTree = "<group>"; };
 		0EB4B50C243F0261006752EF /* DummyAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyAPIClient.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				0EC4A821243D5494009193FF /* AppDelegate.swift */,
+				0E74967D24420A960011B28C /* Settings.bundle */,
 				0EC4A823243D5494009193FF /* SceneDelegate.swift */,
 				0E2164D4243D79F000F7C09F /* Extensions */,
 				0EC4A896243D5765009193FF /* Controllers */,
@@ -749,6 +752,7 @@
 				0EC4A870243D553F009193FF /* Embed Frameworks */,
 				763FB95CFE1D0EC5E9305075 /* [CP] Embed Pods Frameworks */,
 				0EA58ED62441FCB50063ADC2 /* Swiftlint Run Script */,
+				0E74967F24420AB10011B28C /* LicensePlist Run Script */,
 			);
 			buildRules = (
 			);
@@ -946,6 +950,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E74967E24420A960011B28C /* Settings.bundle in Resources */,
 				0EC4A82E243D5495009193FF /* LaunchScreen.storyboard in Resources */,
 				0EC4A82B243D5495009193FF /* Assets.xcassets in Resources */,
 				0EC4A829243D5494009193FF /* Main.storyboard in Resources */,
@@ -1027,6 +1032,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		0E74967F24420AB10011B28C /* LicensePlist Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "LicensePlist Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n$PODS_ROOT/LicensePlist/license-plist --output-path $PRODUCT_NAME/Settings.bundle\nfi\n";
 		};
 		0EA58ED62441FCB50063ADC2 /* Swiftlint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;

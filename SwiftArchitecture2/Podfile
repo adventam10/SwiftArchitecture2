@@ -3,6 +3,7 @@ platform :ios, '12.0'
 
 def common_install_pods
   pod 'SwiftLint', '0.39.2'
+  pod 'LicensePlist', '2.15.1'
 end
 
 target 'Models' do
