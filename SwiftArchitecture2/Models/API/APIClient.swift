@@ -34,7 +34,6 @@ public enum HTTPMethod: String {
 }
 
 public protocol Request {
-
     var baseURL: URL { get }
     var method: HTTPMethod { get }
     var path: String { get }
@@ -48,7 +47,6 @@ public protocol Request {
 }
 
 public extension Request {
-    
     var headerFields: [String: String] {
         return [:]
     }
@@ -90,7 +88,6 @@ public protocol APIClient {
 }
 
 public final class DefaultAPIClient: APIClient {
-
     public static let shared = DefaultAPIClient()
 
     private init() {}
@@ -100,7 +97,7 @@ public final class DefaultAPIClient: APIClient {
             switch response.result {
             case .success(let data):
                 completion(.success(data))
-            case .failure(_):
+            case .failure:
                 completion(.failure(response.response?.statusCode == nil ? .network : .server))
             }
         }

@@ -29,7 +29,7 @@ final class AreaFilterModelTests: XCTestCase {
     
     func test_updateAreaIds_add_id() {
         let model = AreaFilterModel(selectedAreaIds: [1, 2])
-        model.updateAreaIds(id: 3)
+        model.updateAreaIds(areaId: 3)
         let results = [1, 2, 3]
         XCTAssertTrue(model.selectedAreaIds.allSatisfy { results.contains($0) })
         XCTAssertEqual(model.selectedAreaIds.count, results.count)
@@ -37,7 +37,7 @@ final class AreaFilterModelTests: XCTestCase {
 
     func test_updateAreaIds_add_id_when_empty() {
         let model = AreaFilterModel(selectedAreaIds: [])
-        model.updateAreaIds(id: 3)
+        model.updateAreaIds(areaId: 3)
         let results = [3]
         XCTAssertTrue(model.selectedAreaIds.allSatisfy { results.contains($0) })
         XCTAssertEqual(model.selectedAreaIds.count, results.count)
@@ -45,7 +45,7 @@ final class AreaFilterModelTests: XCTestCase {
 
     func test_updateAreaIds_remove_id() {
         let model = AreaFilterModel(selectedAreaIds: [1, 3])
-        model.updateAreaIds(id: 3)
+        model.updateAreaIds(areaId: 3)
         let results = [1]
         XCTAssertTrue(model.selectedAreaIds.allSatisfy { results.contains($0) })
         XCTAssertEqual(model.selectedAreaIds.count, results.count)

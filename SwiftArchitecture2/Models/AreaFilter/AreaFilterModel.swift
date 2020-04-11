@@ -9,14 +9,13 @@
 import Foundation
 
 public final class AreaFilterModel {
-
     public let notificationCenter = NotificationCenter.default
     public let areaList = Area.allCases
     public private(set) var selectedAreaIds: Set<Int> {
         didSet {
             notificationCenter.post(name: .init(rawValue: "selectedAreaIds"),
-            object: nil,
-            userInfo: ["selectedAreaIds": selectedAreaIds])
+                                    object: nil,
+                                    userInfo: ["selectedAreaIds": selectedAreaIds])
         }
     }
 
@@ -24,11 +23,11 @@ public final class AreaFilterModel {
         self.selectedAreaIds = selectedAreaIds
     }
 
-    public func updateAreaIds(id: Int) {
-        if selectedAreaIds.contains(id) {
-            selectedAreaIds.remove(id)
+    public func updateAreaIds(areaId: Int) {
+        if selectedAreaIds.contains(areaId) {
+            selectedAreaIds.remove(areaId)
         } else {
-            selectedAreaIds.insert(id)
+            selectedAreaIds.insert(areaId)
         }
     }
 

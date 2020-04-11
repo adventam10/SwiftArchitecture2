@@ -10,7 +10,6 @@ import Models
 import Views
 
 final class WeatherViewController: UIViewController {
-
     var model: WeatherModel! {
         didSet {
             registerModel()
@@ -20,10 +19,10 @@ final class WeatherViewController: UIViewController {
     private lazy var myView = WeatherView()
 
     private let dateFormatter: DateFormatter = {
-        var df = DateFormatter()
-        df.locale = Locale(identifier: "ja_JP")
-        df.dateFormat = "yyyy/MM/dd(E)"
-        return df
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.dateFormat = "yyyy/MM/dd(E)"
+        return formatter
     }()
 
     deinit {
@@ -31,16 +30,13 @@ final class WeatherViewController: UIViewController {
     }
 
     private func registerModel() {
-        model.notificationCenter.addObserver(forName: .init(rawValue: "weather"),
-                                             object: nil,
-                                             queue: nil,
-                                             using:
-            {
-                [weak self] notification in
-                if let weather = notification.userInfo?["weather"] as? Weather {
-                    self?.updateViews(weather: weather)
-                }
-        })
+        _ = model.notificationCenter
+            .addObserver(forName: .init(rawValue: "weather"),
+                         object: nil, queue: nil) { [weak self] notification in
+                            if let weather = notification.userInfo?["weather"] as? Weather {
+                                self?.updateViews(weather: weather)
+                            }
+        }
     }
 
     override func viewDidLoad() {
@@ -75,10 +71,10 @@ final class WeatherViewController: UIViewController {
                           date: dateFormatter.string(from: Date()))
         updateWeatherView(weatherView: myView.tomorrowView,
                           forecast: weather.tomorrowForecast,
-                          date: dateFormatter.string(from: Date(timeIntervalSinceNow: 60*60*24)))
+                          date: dateFormatter.string(from: Date(timeIntervalSinceNow: 60 * 60 * 24)))
         updateWeatherView(weatherView: myView.dayAfterTomorrowView,
                           forecast: weather.dayAfterTomorrowForecast,
-                          date: dateFormatter.string(from: Date(timeIntervalSinceNow: 60*60*24*2)))
+                          date: dateFormatter.string(from: Date(timeIntervalSinceNow: 60 * 60 * 24 * 2)))
     }
 
     private func updateWeatherView(weatherView: WeatherInfoView,

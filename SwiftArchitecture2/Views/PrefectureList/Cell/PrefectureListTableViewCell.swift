@@ -13,10 +13,9 @@ public protocol PrefectureListTableViewCellDelegate: AnyObject {
 }
 
 public final class PrefectureListTableViewCell: UITableViewCell {
-
-    weak public var delegate: PrefectureListTableViewCellDelegate?
-    @IBOutlet weak public var nameLabel: UILabel!
-    @IBOutlet weak public var favoriteButton: UIButton!
+    public weak var delegate: PrefectureListTableViewCellDelegate?
+    @IBOutlet public weak var nameLabel: UILabel!
+    @IBOutlet public weak var favoriteButton: UIButton!
 
     @IBAction private func changeFavorite(_ sender: Any) {
         delegate?.prefectureListTableViewCell(self, didChangeFavorite: sender)

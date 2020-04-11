@@ -9,11 +9,10 @@
 import UIKit
 
 public final class PrefectureListView: XibLoadView {
-
     public let cellIdentifier = "PrefectureListTableViewCell"
-    @IBOutlet weak public var favoriteFilterButton: UIButton!
-    @IBOutlet weak public var areaFilterButton: UIButton!
-    @IBOutlet weak public var tableView: UITableView! {
+    @IBOutlet public weak var favoriteFilterButton: UIButton!
+    @IBOutlet public weak var areaFilterButton: UIButton!
+    @IBOutlet public weak var tableView: UITableView! {
         didSet {
             tableView.register(UINib(nibName: cellIdentifier, bundle: Bundle(for: type(of: self))), forCellReuseIdentifier: cellIdentifier)
         }

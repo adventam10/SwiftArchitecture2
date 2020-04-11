@@ -9,7 +9,6 @@
 import Foundation
 
 public enum Area: CaseIterable {
-
     case hokkaido
     case tohoku
     case kanto
@@ -40,7 +39,7 @@ public enum Area: CaseIterable {
         }
     }
 
-    public var id: Int {
+    public var id: Int { // swiftlint:disable:this identifier_name
         switch self {
         case .hokkaido:
             return 0

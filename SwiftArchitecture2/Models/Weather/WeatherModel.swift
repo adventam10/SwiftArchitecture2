@@ -9,7 +9,6 @@
 import Foundation
 
 public final class WeatherModel {
-
     public let notificationCenter = NotificationCenter.default
     public private(set) var weather: Weather! {
         didSet {

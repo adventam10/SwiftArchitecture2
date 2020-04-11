@@ -16,7 +16,6 @@ opt_in_rules:
   - empty_count
   - empty_string
   - identical_operands
-  - implicit_return
   - joined_default_parameter
   - last_where
   - legacy_random
@@ -27,7 +26,6 @@ opt_in_rules:
   - operator_whitespace
   - overridden_super_call
   - private_action
-  - private_outlet
   - prohibited_super_call
   - redundant_nil_coalescing
   - trailing_closure

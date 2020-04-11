@@ -9,7 +9,6 @@
 import UIKit
 
 public final class AreaFilterTableViewCell: UITableViewCell {
-
-    @IBOutlet weak public var nameLabel: UILabel!
-    @IBOutlet weak public var checkButton: UIButton!
+    @IBOutlet public weak var nameLabel: UILabel!
+    @IBOutlet public weak var checkButton: UIButton!
 }

@@ -34,7 +34,7 @@ final class PrefectureListModelTests: XCTestCase {
         let dataStore = FakeDataStore()
         dataStore.list = ["1", "2"]
         let model = PrefectureListModel(dataStore: dataStore)
-        let result = model.updateFavoriteIds(id: "3")
+        let result = model.updateFavoriteIds(cityId: "3")
         let expectedValue = ["1", "2", "3"]
         switch result {
         case .success(let favoriteIds):
@@ -49,7 +49,7 @@ final class PrefectureListModelTests: XCTestCase {
         let dataStore = FakeDataStore()
         dataStore.list = []
         let model = PrefectureListModel(dataStore: dataStore)
-        let result = model.updateFavoriteIds(id: "3")
+        let result = model.updateFavoriteIds(cityId: "3")
         let expectedValue = ["3"]
         switch result {
         case .success(let favoriteIds):
@@ -64,7 +64,7 @@ final class PrefectureListModelTests: XCTestCase {
         let dataStore = FakeDataStore()
         dataStore.list = ["1", "2"]
         let model = PrefectureListModel(dataStore: dataStore)
-        let result = model.updateFavoriteIds(id: "2")
+        let result = model.updateFavoriteIds(cityId: "2")
         let expectedValue = ["1"]
         switch result {
         case .success(let favoriteIds):

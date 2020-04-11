@@ -9,7 +9,6 @@
 import Foundation
 
 public extension Weather {
-
     var todayForecast: Forecast? {
         return forecasts?.first
     }
@@ -24,7 +23,6 @@ public extension Weather {
 }
 
 public extension Forecast {
-
     var maxCelsius: String {
         guard let temperature = temperature,
             let max = temperature.max else {

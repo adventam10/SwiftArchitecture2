@@ -14,9 +14,8 @@ protocol AreaFilterViewControllerDelegate: AnyObject {
 }
 
 final class AreaFilterViewController: UIViewController {
-
     weak var delegate: AreaFilterViewControllerDelegate?
-    let viewSize = CGSize(width: 150, height: 44*9)
+    let viewSize = CGSize(width: 150, height: 44 * 9)
     var model: AreaFilterModel! {
         didSet {
             registerModel()
@@ -35,19 +34,16 @@ final class AreaFilterViewController: UIViewController {
     }
 
     private func registerModel() {
-        model.notificationCenter.addObserver(forName: .init(rawValue: "selectedAreaIds"),
-                                             object: nil,
-                                             queue: nil,
-                                             using:
-            {
-                [weak self] notification in
-                if let selectedAreaIds = notification.userInfo?["selectedAreaIds"] as? Set<Int> {
-                    if let weakSelf = self {
-                        weakSelf.updateViews()
-                        weakSelf.delegate?.areaFilterViewController(weakSelf, didChangeSelectedAreaIds: selectedAreaIds)
-                    }
-                }
-        })
+        _ = model.notificationCenter
+            .addObserver(forName: .init(rawValue: "selectedAreaIds"),
+                         object: nil, queue: nil) { [weak self] notification in
+                            if let selectedAreaIds = notification.userInfo?["selectedAreaIds"] as? Set<Int> {
+                                if let weakSelf = self {
+                                    weakSelf.updateViews()
+                                    weakSelf.delegate?.areaFilterViewController(weakSelf, didChangeSelectedAreaIds: selectedAreaIds)
+                                }
+                            }
+        }
         tableDataList = model.areaList
     }
 
@@ -75,15 +71,13 @@ final class AreaFilterViewController: UIViewController {
 }
 
 extension AreaFilterViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let area = tableDataList[indexPath.row]
-        model.updateAreaIds(id: area.id)
+        model.updateAreaIds(areaId: area.id)
     }
 }
 
 extension AreaFilterViewController: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableDataList.count
     }

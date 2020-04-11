@@ -9,7 +9,6 @@
 import Foundation
 
 public final class DummyAPIClient: APIClient {
-
     public static let shared = DummyAPIClient()
 
     private init() {}

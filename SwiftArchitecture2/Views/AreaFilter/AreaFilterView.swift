@@ -9,12 +9,11 @@
 import UIKit
 
 public final class AreaFilterView: XibLoadView {
-
     public let cellIdentifier = "AreaFilterTableViewCell"
-    @IBOutlet weak public var tableView: UITableView! {
+    @IBOutlet public weak var tableView: UITableView! {
         didSet {
             tableView.register(UINib(nibName: cellIdentifier, bundle: Bundle(for: type(of: self))), forCellReuseIdentifier: cellIdentifier)
         }
     }
-    @IBOutlet weak public var allCheckButton: UIButton!
+    @IBOutlet public weak var allCheckButton: UIButton!
 }

@@ -20,7 +20,6 @@ public enum FavoritePrefectureDataStoreError: Error {
 }
 
 public struct FavoritePrefectureDataStoreImpl: FavoritePrefectureDataStore {
-
     enum Key: String {
         case favoriteIds = "FAVORITE_PREFECTURE_CITY_IDS"
     }

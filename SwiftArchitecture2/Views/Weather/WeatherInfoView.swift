@@ -9,11 +9,10 @@
 import UIKit
 
 public final class WeatherInfoView: XibLoadView {
-
-    @IBOutlet weak public var minCelsiusLabel: UILabel!
-    @IBOutlet weak public var maxCelsiusLabel: UILabel!
-    @IBOutlet weak public var weatherLabel: UILabel!
-    @IBOutlet weak public var imageView: UIImageView!
-    @IBOutlet weak public var dateLabel: UILabel!
-    @IBOutlet weak public var dateTitleLabel: UILabel!
+    @IBOutlet public weak var minCelsiusLabel: UILabel!
+    @IBOutlet public weak var maxCelsiusLabel: UILabel!
+    @IBOutlet public weak var weatherLabel: UILabel!
+    @IBOutlet public weak var imageView: UIImageView!
+    @IBOutlet public weak var dateLabel: UILabel!
+    @IBOutlet public weak var dateTitleLabel: UILabel!
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 public class WeatherAPI {
-
     private let apiClient: APIClient
 
     public init(apiClient: APIClient) {
@@ -36,7 +35,6 @@ public protocol WeatherRequest: Request {
 }
 
 public extension WeatherRequest {
-
     var baseURL: URL {
         #if DEBUG
           // デバッグ（必要であればここでURLを開発用途化に変える）*別モジュールなのでDUMMYは使えない
@@ -57,9 +55,8 @@ public extension WeatherRequest {
 }
 
 public enum WeatherAPIRequest: WeatherRequest {
-
     case getWeather(cityId: String)
-    public var parameter: [String : Any] {
+    public var parameter: [String: Any] {
         switch self {
         case .getWeather(let cityId):
             return ["city": cityId]

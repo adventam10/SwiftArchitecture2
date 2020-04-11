@@ -10,7 +10,6 @@ import Models
 import Views
 
 final class PrefectureListViewController: UIViewController {
-
     var model: PrefectureListModel! {
         didSet {
             registerModel()
@@ -102,14 +101,12 @@ final class PrefectureListViewController: UIViewController {
 }
 
 extension PrefectureListViewController: UIPopoverPresentationControllerDelegate {
-
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
 }
 
 extension PrefectureListViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showProgress()
         let data = tableDataList[indexPath.row]
@@ -127,7 +124,6 @@ extension PrefectureListViewController: UITableViewDelegate {
 }
 
 extension PrefectureListViewController: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableDataList.count
     }
@@ -143,13 +139,12 @@ extension PrefectureListViewController: UITableViewDataSource {
 }
 
 extension PrefectureListViewController: PrefectureListTableViewCellDelegate {
-
     func prefectureListTableViewCell(_ cell: PrefectureListTableViewCell, didChangeFavorite sender: Any) {
         guard let indexPath = myView.tableView.indexPath(for: cell) else {
             return
         }
         let data = tableDataList[indexPath.row]
-        let result = model.updateFavoriteIds(id: data.cityId)
+        let result = model.updateFavoriteIds(cityId: data.cityId)
         switch result {
         case .success:
             filteredTableDataList()

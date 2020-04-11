@@ -9,7 +9,6 @@
 import Foundation
 
 public final class PrefectureListModel {
-
     public let prefectureList: [CityData]
     public let dataStore: FavoritePrefectureDataStore
     public private(set) var favoriteIds: [String]
@@ -42,12 +41,12 @@ public final class PrefectureListModel {
         }
     }
 
-    public func updateFavoriteIds(id: String) -> Result<[String], FavoritePrefectureDataStoreError> {
+    public func updateFavoriteIds(cityId: String) -> Result<[String], FavoritePrefectureDataStoreError> {
         let result: Result<[String], FavoritePrefectureDataStoreError>
-        if favoriteIds.contains(id) {
-            result = dataStore.remove([id])
+        if favoriteIds.contains(cityId) {
+            result = dataStore.remove([cityId])
         } else {
-            result = dataStore.add([id])
+            result = dataStore.add([cityId])
         }
         if case let .success(ids) = result {
             favoriteIds = ids
