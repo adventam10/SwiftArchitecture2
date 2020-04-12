@@ -34,18 +34,6 @@ body: MIT License
 Copyrig…
 version: 2.15.1
 
-name: LicensePlist, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.15.1
-
-name: LicensePlist, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.15.1
-
 name: PKHUD, nameSpecified: 
 body: The MIT License (MIT…
 version: 5.2.1
@@ -53,14 +41,6 @@ version: 5.2.1
 name: PKHUD, nameSpecified: 
 body: The MIT License (MIT…
 version: 5.2.1
-
-name: SwiftLint, nameSpecified: 
-body: The MIT License (MIT…
-version: 0.39.2
-
-name: SwiftLint, nameSpecified: 
-body: The MIT License (MIT…
-version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…

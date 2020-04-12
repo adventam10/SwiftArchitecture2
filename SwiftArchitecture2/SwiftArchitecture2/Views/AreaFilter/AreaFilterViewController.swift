@@ -7,7 +7,6 @@
 //
 import UIKit
 import Models
-import Views
 
 protocol AreaFilterViewControllerDelegate: AnyObject {
     func areaFilterViewController(_ areaFilterViewController: AreaFilterViewController, didChangeSelectedAreaIds selectedAreaIds: Set<Int>)

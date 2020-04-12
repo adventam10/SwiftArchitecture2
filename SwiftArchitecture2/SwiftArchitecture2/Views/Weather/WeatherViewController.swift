@@ -7,7 +7,6 @@
 //
 import UIKit
 import Models
-import Views
 
 final class WeatherViewController: UIViewController {
     var model: WeatherModel! {

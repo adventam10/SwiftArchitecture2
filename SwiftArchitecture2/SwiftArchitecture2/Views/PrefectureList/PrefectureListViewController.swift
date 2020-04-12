@@ -7,7 +7,6 @@
 //
 import UIKit
 import Models
-import Views
 
 final class PrefectureListViewController: UIViewController {
     var model: PrefectureListModel! {

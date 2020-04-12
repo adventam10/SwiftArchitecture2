@@ -38,16 +38,3 @@ target 'SwiftArchitecture2' do
   end
 
 end
-
-target 'Views' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for Views
-  common_install_pods
-
-  target 'ViewsTests' do
-    # Pods for testing
-  end
-
-end
