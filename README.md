@@ -28,8 +28,10 @@ Cocoa Pods で導入（プル後にすぐビルドできるように Carthage �
 | [mono0926/LicensePlist](https://github.com/mono0926/LicensePlist) | ライセンス表記用（ライセンス表記は大事😇） |
 
 ## Scheme
-* SwiftArchitecture2 通信してデータを取得する
-* DummySwiftArchitecture2 通信はせずプロジェクト内のJSONファイルを取得する
+* SwiftArchitecture2  
+通信してデータを取得する
+* DummySwiftArchitecture2  
+通信はせずプロジェクト内のJSONファイルを取得する
 
 ## アプリ
 | 一覧 | 地方フィルター | お天気 |
