@@ -9,9 +9,30 @@
 import UIKit
 import Models
 
+protocol PrefectureListModelInput {
+    var prefectureList: [CityData] { get }
+    func updateFavoriteIds(cityId: String) -> Result<[String], FavoritePrefectureDataStoreError>
+    var favoriteIds: [String] { get }
+    func prefectureFiltered(isFilterFavorite: Bool,
+                            favoriteIds: [String],
+                            selectedAreaIds: Set<Int>) -> [CityData]
+}
+
+protocol PrefectureListPresenterOutput: AnyObject {
+    func showProgress()
+    func hideProgress()
+    func showAlert(message: String)
+    func performSegue(withIdentifier: String, sender: Any?)
+    func showAreaFilterViewController(button: UIButton)
+    func updateViews(with data: PrefectureListViewData)
+}
+
+extension PrefectureListModel: PrefectureListModelInput {
+}
+
 final class PrefectureListPresenter {
-    private weak var view: PrefectureListViewController!
-    private var model: PrefectureListModel
+    private weak var view: PrefectureListPresenterOutput!
+    private var model: PrefectureListModelInput
 
     private var tableDataList: [CityData] = [] {
         didSet {
@@ -20,12 +41,12 @@ final class PrefectureListPresenter {
     }
     private(set) var isCheckFavoriteFilter = false
     private(set) var selectedAreaIds: Set<Int> = []
-    
+
     var numberOfTableDataList: Int {
         return tableDataList.count
     }
 
-    init(view: PrefectureListViewController, model: PrefectureListModel = PrefectureListModel(dataStore: FavoritePrefectureDataStoreImpl())) {
+    init(view: PrefectureListPresenterOutput, model: PrefectureListModelInput = PrefectureListModel(dataStore: FavoritePrefectureDataStoreImpl())) {
         self.view = view
         self.model = model
         tableDataList = model.prefectureList

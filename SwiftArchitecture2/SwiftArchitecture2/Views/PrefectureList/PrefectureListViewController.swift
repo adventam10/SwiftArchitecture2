@@ -9,7 +9,7 @@
 import UIKit
 import Models
 
-final class PrefectureListViewController: UIViewController {
+final class PrefectureListViewController: UIViewController, PrefectureListPresenterOutput {
     private var presenter: PrefectureListPresenter!
     private lazy var myView = PrefectureListView()
 
