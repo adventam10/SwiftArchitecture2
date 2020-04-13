@@ -10,6 +10,8 @@ iOSアプリのアーキテクチャについて考える
 Cocoa MVC を意識して作成しました。
 * fat\_fat_fat  
 画面ごとのViewControllerのみで作成しました。（これこそが FatViewController??）
+* mvp_pv  
+MVP(Passive View) を意識して作成しました。
 
 ## 環境
 * Xcode 11.4
