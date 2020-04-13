@@ -311,6 +311,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `AreaFilterTableViewCell`.
+    static let areaFilterTableViewCell: Rswift.ReuseIdentifier<AreaFilterTableViewCell> = Rswift.ReuseIdentifier(identifier: "AreaFilterTableViewCell")
+    /// Reuse identifier `PrefectureListTableViewCell`.
+    static let prefectureListTableViewCell: Rswift.ReuseIdentifier<PrefectureListTableViewCell> = Rswift.ReuseIdentifier(identifier: "PrefectureListTableViewCell")
+
+    fileprivate init() {}
+  }
+
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()
@@ -344,8 +354,11 @@ struct _R: Rswift.Validatable {
       try _WeatherInfoView.validate()
     }
 
-    struct _AreaFilterTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
+    struct _AreaFilterTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = AreaFilterTableViewCell
+
       let bundle = R.hostingBundle
+      let identifier = "AreaFilterTableViewCell"
       let name = "AreaFilterTableViewCell"
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> AreaFilterTableViewCell? {
@@ -380,8 +393,11 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    struct _PrefectureListTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
+    struct _PrefectureListTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = PrefectureListTableViewCell
+
       let bundle = R.hostingBundle
+      let identifier = "PrefectureListTableViewCell"
       let name = "PrefectureListTableViewCell"
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PrefectureListTableViewCell? {

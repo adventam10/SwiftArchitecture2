@@ -58,7 +58,7 @@ extension AreaFilterViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: myView.cellIdentifier, for: indexPath) as! AreaFilterTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.areaFilterTableViewCell, for: indexPath)!
         cell.updateViews(with: presenter.makeAreaFilterTableViewCellData(forRow: indexPath.row))
         return cell
     }

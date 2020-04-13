@@ -64,6 +64,11 @@ final class PrefectureListViewController: UIViewController, PrefectureListPresen
                     direction: .up,
                     delegate: self)
     }
+
+    func showWeatherViewController(model: WeatherModelInput) {
+        performSegue(withIdentifier: R.segue.prefectureListViewController.showWeather,
+                     sender: model)
+    }
 }
 
 extension PrefectureListViewController: UIPopoverPresentationControllerDelegate {
@@ -84,7 +89,7 @@ extension PrefectureListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: myView.cellIdentifier, for: indexPath) as! PrefectureListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.prefectureListTableViewCell, for: indexPath)!
         cell.delegate = self
         cell.updateViews(with: presenter.makePrefectureListTableViewCellData(forRow: indexPath.row))
         return cell

@@ -22,7 +22,7 @@ protocol PrefectureListPresenterOutput: AnyObject {
     func showProgress()
     func hideProgress()
     func showAlert(message: String)
-    func performSegue(withIdentifier: String, sender: Any?)
+    func showWeatherViewController(model: WeatherModelInput)
     func showAreaFilterViewController(button: UIButton)
     func updateViews(with data: PrefectureListViewData)
 }
@@ -75,7 +75,7 @@ final class PrefectureListPresenter {
             self?.view.hideProgress()
             switch result {
             case .success:
-                self?.view.performSegue(withIdentifier: "showWeather", sender: weatherModel)
+                self?.view.showWeatherViewController(model: weatherModel)
             case .failure(let error):
                 self?.view.showAlert(message: error.localizedDescription)
             }

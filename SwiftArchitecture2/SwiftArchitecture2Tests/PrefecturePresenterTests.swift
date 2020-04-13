@@ -174,7 +174,7 @@ private final class PrefectureViewSpy: PrefectureListPresenterOutput {
     var callShowProgressCount: Int = 0
     var callHideProgressCount: Int = 0
     var callShowAlertCount: Int = 0
-    var callPerformSegueCount: Int = 0
+    var callShowWeatherViewControllerCount: Int = 0
     var callShowAreaFilterViewControllerCount: Int = 0
     
     func showProgress() {
@@ -189,8 +189,8 @@ private final class PrefectureViewSpy: PrefectureListPresenterOutput {
         callShowAlertCount += 1
     }
 
-    func performSegue(withIdentifier: String, sender: Any?) {
-        callPerformSegueCount += 1
+    func showWeatherViewController(model: WeatherModelInput) {
+        callShowWeatherViewControllerCount += 1
     }
 
     func showAreaFilterViewController(button: UIButton) {

@@ -28,7 +28,7 @@ final class WeatherInfoView: XibLoadView {
     private func getImage(imageData: Data?) -> UIImage {
         guard let imageData = imageData,
             let image = UIImage(data: imageData) else {
-                return UIImage(named: "icon_no_image")!
+                return R.image.icon_no_image()!
         }
         return image
     }

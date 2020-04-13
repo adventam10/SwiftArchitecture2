@@ -9,10 +9,9 @@
 import UIKit
 
 final class AreaFilterView: XibLoadView {
-    let cellIdentifier = "AreaFilterTableViewCell"
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            tableView.register(UINib(nibName: cellIdentifier, bundle: Bundle(for: type(of: self))), forCellReuseIdentifier: cellIdentifier)
+            tableView.register(R.nib.areaFilterTableViewCell)
         }
     }
     @IBOutlet weak var allCheckButton: UIButton!
