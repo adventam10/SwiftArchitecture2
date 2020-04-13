@@ -9,9 +9,24 @@
 import UIKit
 import Models
 
+protocol AreaFilterModelInput {
+    var selectedAreaIds: Set<Int> { get }
+    var areaList: [Area] { get }
+    func updateAreaIds(areaId: Int, completion: @escaping ((Set<Int>) -> Void))
+    func updateAreaIds(isAllCheck: Bool, completion: @escaping ((Set<Int>) -> Void))
+}
+
+protocol AreaFilterPresenterOutput: AnyObject {
+    func didChangeSelectedAreaIds(_ selectedAreaIds: Set<Int>)
+    func updateViews(with data: AreaFilterViewData)
+}
+
+extension AreaFilterModel: AreaFilterModelInput {
+}
+
 final class AreaFilterPresenter {
-    private var model: AreaFilterModel
-    private weak var view: AreaFilterViewController!
+    private var model: AreaFilterModelInput
+    private weak var view: AreaFilterPresenterOutput!
 
     var isAllCheck: Bool {
         return tableDataList.allSatisfy { model.selectedAreaIds.contains($0.id) }
@@ -22,7 +37,7 @@ final class AreaFilterPresenter {
         return tableDataList.count
     }
 
-    init(view: AreaFilterViewController, model: AreaFilterModel) {
+    init(view: AreaFilterPresenterOutput, model: AreaFilterModelInput) {
         self.view = view
         self.model = model
         tableDataList = model.areaList
@@ -49,7 +64,7 @@ final class AreaFilterPresenter {
                 return
             }
             weakSelf.view.updateViews(with: weakSelf.makeAreaFilterViewData())
-            weakSelf.view.delegate?.areaFilterViewController(weakSelf.view, didChangeSelectedAreaIds: selectedAreaIds)
+            weakSelf.view.didChangeSelectedAreaIds(selectedAreaIds)
         }
     }
 
@@ -59,7 +74,7 @@ final class AreaFilterPresenter {
                 return
             }
             weakSelf.view.updateViews(with: weakSelf.makeAreaFilterViewData())
-            weakSelf.view.delegate?.areaFilterViewController(weakSelf.view, didChangeSelectedAreaIds: selectedAreaIds)
+            weakSelf.view.didChangeSelectedAreaIds(selectedAreaIds)
         }
     }
 

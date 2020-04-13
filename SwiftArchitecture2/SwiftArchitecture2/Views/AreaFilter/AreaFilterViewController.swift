@@ -12,7 +12,7 @@ protocol AreaFilterViewControllerDelegate: AnyObject {
     func areaFilterViewController(_ areaFilterViewController: AreaFilterViewController, didChangeSelectedAreaIds selectedAreaIds: Set<Int>)
 }
 
-final class AreaFilterViewController: UIViewController {
+final class AreaFilterViewController: UIViewController, AreaFilterPresenterOutput {
     weak var delegate: AreaFilterViewControllerDelegate?
     let viewSize = CGSize(width: 150, height: 44 * 9)
 
@@ -39,6 +39,10 @@ final class AreaFilterViewController: UIViewController {
     func updateViews(with data: AreaFilterViewData) {
         myView.tableView.reloadData()
         myView.updateViews(with: data)
+    }
+
+    func didChangeSelectedAreaIds(_ selectedAreaIds: Set<Int>) {
+        delegate?.areaFilterViewController(self, didChangeSelectedAreaIds: selectedAreaIds)
     }
 }
 
