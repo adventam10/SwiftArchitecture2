@@ -4,6 +4,7 @@ excluded:
   - SwiftArchitecture2UITests
   - ModelsTests
   - ViewsTests
+  - SwiftArchitecture2/R.generated.swift
 
 opt_in_rules:
   - anyobject_protocol  

@@ -2,12 +2,16 @@ PODS:
   - Alamofire (5.1.0)
   - LicensePlist (2.15.1)
   - PKHUD (5.2.1)
+  - R.swift (5.1.0):
+    - R.swift.Library (~> 5.1.0)
+  - R.swift.Library (5.1.0)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
   - Alamofire (= 5.1.0)
   - LicensePlist (= 2.15.1)
   - PKHUD (= 5.2.1)
+  - R.swift (= 5.1.0)
   - SwiftLint (= 0.39.2)
 
 SPEC REPOS:
@@ -15,14 +19,18 @@ SPEC REPOS:
     - Alamofire
     - LicensePlist
     - PKHUD
+    - R.swift
+    - R.swift.Library
     - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   LicensePlist: 9fb7c521b431f94ea665046c15ed5f392583afbd
   PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
+  R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
+  R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 1cfb7487e85de82846e78922c66b2181a30c87c7
+PODFILE CHECKSUM: 0bd26d090f16705b460b87b6ccb56e3d6b42864f
 
 COCOAPODS: 1.9.0

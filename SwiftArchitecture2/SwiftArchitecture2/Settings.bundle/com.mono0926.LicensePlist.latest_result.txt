@@ -42,6 +42,22 @@ name: PKHUD, nameSpecified:
 body: The MIT License (MIT…
 version: 5.2.1
 
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.1.0
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.1.0
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.1.0
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.1.0
+
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
 version: 0.39.2

@@ -88,6 +88,7 @@
 		0EEC627A24441CD400DB562F /* PrefecturePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC627924441CD400DB562F /* PrefecturePresenterTests.swift */; };
 		0EEC627C2444228D00DB562F /* AreaFilterPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC627B2444228D00DB562F /* AreaFilterPresenterTests.swift */; };
 		0EEC627E2444268300DB562F /* WeatherPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC627D2444268300DB562F /* WeatherPresenterTests.swift */; };
+		0EEC62812444BF7A00DB562F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC62802444BF7A00DB562F /* R.generated.swift */; };
 		0EF392E3243D750D005BD265 /* CityData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EF392E2243D750D005BD265 /* CityData.json */; };
 		1D1B56681817353EE4D48AAE /* Pods_SwiftArchitecture2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D56CEFD7627983DF99BCDE1 /* Pods_SwiftArchitecture2Tests.framework */; };
 		221E52E691F13168B88E56BD /* Pods_SwiftArchitecture2_SwiftArchitecture2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC4279E7A51733B8FF3C3DF /* Pods_SwiftArchitecture2_SwiftArchitecture2UITests.framework */; };
@@ -239,6 +240,7 @@
 		0EEC627924441CD400DB562F /* PrefecturePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturePresenterTests.swift; sourceTree = "<group>"; };
 		0EEC627B2444228D00DB562F /* AreaFilterPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaFilterPresenterTests.swift; sourceTree = "<group>"; };
 		0EEC627D2444268300DB562F /* WeatherPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresenterTests.swift; sourceTree = "<group>"; };
+		0EEC62802444BF7A00DB562F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0EF392E2243D750D005BD265 /* CityData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CityData.json; path = Models/CityData.json; sourceTree = SOURCE_ROOT; };
 		11747BF7E03E844114514E3D /* Pods-Models.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Models.debug.xcconfig"; path = "Target Support Files/Pods-Models/Pods-Models.debug.xcconfig"; sourceTree = "<group>"; };
 		140E5F9F3EBF612BFD68464F /* Pods-Views-ViewsTests.dummy.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Views-ViewsTests.dummy.xcconfig"; path = "Target Support Files/Pods-Views-ViewsTests/Pods-Views-ViewsTests.dummy.xcconfig"; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 		0EC4A820243D5494009193FF /* SwiftArchitecture2 */ = {
 			isa = PBXGroup;
 			children = (
+				0EEC62802444BF7A00DB562F /* R.generated.swift */,
 				0EEC62632443806200DB562F /* Presenters */,
 				0EEC624224437F2F00DB562F /* Views */,
 				0EC4A821243D5494009193FF /* AppDelegate.swift */,
@@ -704,6 +707,7 @@
 			buildConfigurationList = 0EC4A848243D5496009193FF /* Build configuration list for PBXNativeTarget "SwiftArchitecture2" */;
 			buildPhases = (
 				94CD1133E20BA9FBDE865102 /* [CP] Check Pods Manifest.lock */,
+				0EEC627F2444BE1A00DB562F /* R.swift Run Script */,
 				0EC4A81A243D5494009193FF /* Sources */,
 				0EC4A81B243D5494009193FF /* Frameworks */,
 				0EC4A81C243D5494009193FF /* Resources */,
@@ -981,6 +985,26 @@
 			shellPath = /bin/sh;
 			shellScript = "if which ${PODS_ROOT}/SwiftLint/swiftlint >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		0EEC627F2444BE1A00DB562F /* R.swift Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "R.swift Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/$PRODUCT_NAME/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PRODUCT_NAME/R.generated.swift\"\n";
+		};
 		22C05DDED33B970F51CA1DE7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1146,6 +1170,7 @@
 				0EEC6272244382B400DB562F /* WeatherInfoViewData.swift in Sources */,
 				0EEC6276244382DF00DB562F /* AreaFilterTableViewCellData.swift in Sources */,
 				0EEC625824437F3000DB562F /* AreaFilterView.swift in Sources */,
+				0EEC62812444BF7A00DB562F /* R.generated.swift in Sources */,
 				0EEC6274244382CA00DB562F /* WeatherViewData.swift in Sources */,
 				0EEC625E24437F3000DB562F /* XibLoadView.swift in Sources */,
 				0EC4A8C7243D60EC009193FF /* AreaFilterViewController.swift in Sources */,

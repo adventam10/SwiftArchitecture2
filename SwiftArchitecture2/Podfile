@@ -26,6 +26,7 @@ target 'SwiftArchitecture2' do
 
   # Pods for SwiftArchitecture2
   pod 'PKHUD', '5.2.1'
+  pod 'R.swift', '5.1.0'
   common_install_pods
 
   target 'SwiftArchitecture2Tests' do
