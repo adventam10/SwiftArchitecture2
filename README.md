@@ -1,4 +1,4 @@
-# SwiftArchitecture2
+# SwiftArchitecture2 (fat_fat_fat)
 [これ](https://github.com/adventam10/SwiftArchitecture)の再考版
 
 iOSアプリのアーキテクチャについて考える
@@ -7,23 +7,12 @@ master は Cocoa MVC を意識して作成しました。
 
 [livedoor天気のWeb API](http://weather.livedoor.com/weather_hacks/webservice)(商用利用不可)を利用した各都道府県の天気を表示するアプリ。
 
+アーキテクチャは意識せずとにかくViewControllerのみで作りました！
+
 ## 環境
 * Xcode 11.4
 * Target iOS 12.0
 * iPhone (Portrait)
-
-## 使用ライブラリ
-Cocoa Pods で導入
-
-| ライブラリ | 用途 |
-| --- | --- |
-| [pkluz/PKHUD](https://github.com/pkluz/PKHUD) | プログレスの表示 |
-| [Alamofire/Alamofire](https://github.com/Alamofire/Alamofire) | 通信 |
-| [Ahmed-Ali/JSONExport](https://github.com/Ahmed-Ali/JSONExport) | JSONパース用（ファイルを作成） |
-
-## Scheme
-* SwiftArchitecture2 通信してデータを取得する
-* DummySwiftArchitecture2 通信はせずプロジェクト内のJSONファイルを取得する
 
 ## アプリ
 | 一覧 | 地方フィルター | お天気 |
