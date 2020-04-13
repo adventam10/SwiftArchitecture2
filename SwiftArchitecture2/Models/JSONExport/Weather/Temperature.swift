@@ -7,10 +7,12 @@
 
 import Foundation
 
-public struct Temperature: Codable {
+public struct Temperature {
     public let max: Max?
     public let min: Max?
+}
 
+extension Temperature: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         max = try values.decodeIfPresent(Max.self, forKey: .max)

@@ -4,13 +4,15 @@
 
 import Foundation
 
-public struct Max: Codable {
+public struct Max {
     public let celsius: String
     public let fahrenheit: String
+}
 
+extension Max: Codable {
     public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        celsius = try values.decodeIfPresent(String.self, forKey: .celsius) ?? ""
-        fahrenheit = try values.decodeIfPresent(String.self, forKey: .fahrenheit) ?? ""
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            celsius = try values.decodeIfPresent(String.self, forKey: .celsius) ?? ""
+            fahrenheit = try values.decodeIfPresent(String.self, forKey: .fahrenheit) ?? ""
     }
 }

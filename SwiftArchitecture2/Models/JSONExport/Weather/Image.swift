@@ -7,13 +7,15 @@
 
 import Foundation
 
-public struct Image: Codable {
+public struct Image {
     public let height: Int
     public let link: String
     public let title: String
     public let url: String
     public let width: Int
+}
 
+extension Image: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         height = try values.decodeIfPresent(Int.self, forKey: .height) ?? 0

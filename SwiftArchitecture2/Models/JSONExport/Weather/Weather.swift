@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Weather: Codable {
+public struct Weather {
     public let copyright: Copyright?
     public let descriptionField: Description?
     public let forecasts: [Forecast]?
@@ -16,7 +16,9 @@ public struct Weather: Codable {
     public let pinpointLocations: [Provider]?
     public let publicTime: String
     public let title: String
+}
 
+extension Weather: Codable {
     enum CodingKeys: String, CodingKey {
         case copyright
         case descriptionField = "description"

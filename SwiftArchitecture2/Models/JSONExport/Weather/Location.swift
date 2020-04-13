@@ -7,11 +7,13 @@
 
 import Foundation
 
-public struct Location: Codable {
+public struct Location {
     public let area: String
     public let city: String
     public let prefecture: String
+}
 
+extension Location: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         area = try values.decodeIfPresent(String.self, forKey: .area) ?? ""

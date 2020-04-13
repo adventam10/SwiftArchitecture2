@@ -4,11 +4,13 @@
 
 import Foundation
 
-public struct CityData: Codable {
+public struct CityData {
     public let area: Int
     public let cityId: String
     public let name: String
+}
 
+extension CityData: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         area = try values.decodeIfPresent(Int.self, forKey: .area) ?? 0

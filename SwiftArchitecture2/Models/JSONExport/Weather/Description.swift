@@ -7,10 +7,12 @@
 
 import Foundation
 
-public struct Description: Codable {
+public struct Description {
     public let publicTime: String
     public let text: String
+}
 
+extension Description: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         publicTime = try values.decodeIfPresent(String.self, forKey: .publicTime) ?? ""

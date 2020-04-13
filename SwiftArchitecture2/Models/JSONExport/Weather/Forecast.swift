@@ -7,13 +7,15 @@
 
 import Foundation
 
-public struct Forecast: Codable {
+public struct Forecast {
     public let date: String
     public let dateLabel: String
     public let image: Image?
     public let telop: String
     public let temperature: Temperature?
+}
 
+extension Forecast: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         date = try values.decodeIfPresent(String.self, forKey: .date) ?? ""

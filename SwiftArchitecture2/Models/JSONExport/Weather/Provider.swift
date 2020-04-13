@@ -7,10 +7,12 @@
 
 import Foundation
 
-public struct Provider: Codable {
+public struct Provider {
     public let link: String
     public let name: String
+}
 
+extension Provider: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         link = try values.decodeIfPresent(String.self, forKey: .link) ?? ""

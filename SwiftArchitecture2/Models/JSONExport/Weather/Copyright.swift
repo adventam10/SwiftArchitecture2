@@ -7,12 +7,14 @@
 
 import Foundation
 
-public struct Copyright: Codable {
+public struct Copyright {
     public let image: Image?
     public let link: String
     public let provider: [Provider]?
     public let title: String
+}
 
+extension Copyright: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         image = try values.decodeIfPresent(Image.self, forKey: .image)

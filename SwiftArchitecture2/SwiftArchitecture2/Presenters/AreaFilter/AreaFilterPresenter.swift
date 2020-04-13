@@ -28,11 +28,11 @@ final class AreaFilterPresenter {
     private var model: AreaFilterModelInput
     private weak var view: AreaFilterPresenterOutput!
 
-    var isAllCheck: Bool {
+    private var isAllCheck: Bool {
         return tableDataList.allSatisfy { model.selectedAreaIds.contains($0.id) }
     }
-
     private var tableDataList: [Area] = []
+
     var numberOfTableDataList: Int {
         return tableDataList.count
     }

@@ -112,10 +112,6 @@ final class PrefectureListPresenter {
     }
 
     // MARK: - Make View Data
-    func makeAreaFilterPresenter(view: AreaFilterPresenterOutput) -> AreaFilterPresenter {
-        return .init(view: view,
-                     model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
-    }
     func makePrefectureListViewData() -> PrefectureListViewData {
         return .init(isFavoriteFilter: isCheckFavoriteFilter)
     }
@@ -129,6 +125,11 @@ final class PrefectureListPresenter {
     }
 
     // MARK: -
+    func makeAreaFilterPresenter(view: AreaFilterPresenterOutput) -> AreaFilterPresenter {
+        return .init(view: view,
+                     model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
+    }
+
     // この処理はもっとどこか共通の場所でやるべきかもしれない
     private func makeAPIClient() -> APIClient {
         #if DUMMY
