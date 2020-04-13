@@ -9,9 +9,24 @@
 import UIKit
 import Models
 
+protocol WeatherModelInput {
+    var weather: Weather! { get }
+    func requestWeather(_ completion: @escaping (Result<Weather, APIError>) -> Void)
+}
+
+protocol WeatherPresenterOutput: AnyObject {
+    func showProgress()
+    func hideProgress()
+    func showAlert(message: String)
+    func updateViews(with data: WeatherViewData)
+}
+
+extension WeatherModel: WeatherModelInput {
+}
+
 final class WeatherPresenter {
-    private var model: WeatherModel
-    private weak var view: WeatherViewController!
+    private var model: WeatherModelInput
+    private weak var view: WeatherPresenterOutput!
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -20,7 +35,7 @@ final class WeatherPresenter {
         return formatter
     }()
 
-    init(view: WeatherViewController, model: WeatherModel) {
+    init(view: WeatherPresenterOutput, model: WeatherModelInput) {
         self.view = view
         self.model = model
     }

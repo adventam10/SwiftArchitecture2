@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WeatherViewController: UIViewController {
+final class WeatherViewController: UIViewController, WeatherPresenterOutput {
     var presenter: WeatherPresenter!
     private lazy var myView = WeatherView()
 
