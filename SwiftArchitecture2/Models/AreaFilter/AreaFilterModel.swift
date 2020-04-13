@@ -9,33 +9,30 @@
 import Foundation
 
 public final class AreaFilterModel {
-    public let notificationCenter = NotificationCenter.default
     public let areaList = Area.allCases
-    public private(set) var selectedAreaIds: Set<Int> {
-        didSet {
-            notificationCenter.post(name: .init(rawValue: "selectedAreaIds"),
-                                    object: nil,
-                                    userInfo: ["selectedAreaIds": selectedAreaIds])
-        }
-    }
+    public private(set) var selectedAreaIds: Set<Int>
 
     public init(selectedAreaIds: Set<Int>) {
         self.selectedAreaIds = selectedAreaIds
     }
 
-    public func updateAreaIds(areaId: Int) {
+    public func updateAreaIds(areaId: Int,
+                              completion: @escaping ((Set<Int>) -> Void) = { _ in }) {
         if selectedAreaIds.contains(areaId) {
             selectedAreaIds.remove(areaId)
         } else {
             selectedAreaIds.insert(areaId)
         }
+        completion(selectedAreaIds)
     }
 
-    public func updateAreaIds(isAllCheck: Bool) {
+    public func updateAreaIds(isAllCheck: Bool,
+                              completion: @escaping ((Set<Int>) -> Void) = { _ in }) {
         if isAllCheck {
             selectedAreaIds = Set(areaList.map { $0.id })
         } else {
             selectedAreaIds.removeAll()
         }
+        completion(selectedAreaIds)
     }
 }

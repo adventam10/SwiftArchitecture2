@@ -9,14 +9,7 @@
 import Foundation
 
 public final class WeatherModel {
-    public let notificationCenter = NotificationCenter.default
-    public private(set) var weather: Weather! {
-        didSet {
-            notificationCenter.post(name: .init(rawValue: "weather"),
-                                    object: nil,
-                                    userInfo: ["weather": weather!])
-        }
-    }
+    public private(set) var weather: Weather!
     private let weatherAPI: WeatherAPI
     private let cityId: String
 

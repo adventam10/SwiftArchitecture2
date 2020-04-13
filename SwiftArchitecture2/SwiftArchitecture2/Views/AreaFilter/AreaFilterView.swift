@@ -8,12 +8,16 @@
 
 import UIKit
 
-public final class AreaFilterView: XibLoadView {
-    public let cellIdentifier = "AreaFilterTableViewCell"
-    @IBOutlet public weak var tableView: UITableView! {
+final class AreaFilterView: XibLoadView {
+    let cellIdentifier = "AreaFilterTableViewCell"
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.register(UINib(nibName: cellIdentifier, bundle: Bundle(for: type(of: self))), forCellReuseIdentifier: cellIdentifier)
         }
     }
-    @IBOutlet public weak var allCheckButton: UIButton!
+    @IBOutlet weak var allCheckButton: UIButton!
+
+    func updateViews(with data: AreaFilterViewData) {
+        allCheckButton.isSelected = data.isAllCheck
+    }
 }

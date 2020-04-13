@@ -29,7 +29,7 @@ final class AreaFilterModelTests: XCTestCase {
     
     func test_updateAreaIds_add_id() {
         let model = AreaFilterModel(selectedAreaIds: [1, 2])
-        model.updateAreaIds(areaId: 3)
+        model.updateAreaIds(areaId: 3) { _ in }
         let results = [1, 2, 3]
         XCTAssertTrue(model.selectedAreaIds.allSatisfy { results.contains($0) })
         XCTAssertEqual(model.selectedAreaIds.count, results.count)

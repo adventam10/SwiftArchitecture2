@@ -8,7 +8,12 @@
 
 import UIKit
 
-public final class AreaFilterTableViewCell: UITableViewCell {
-    @IBOutlet public weak var nameLabel: UILabel!
-    @IBOutlet public weak var checkButton: UIButton!
+final class AreaFilterTableViewCell: UITableViewCell {
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var checkButton: UIButton!
+
+    func updateViews(with data: AreaFilterTableViewCellData) {
+        nameLabel.text = data.name
+        checkButton.isSelected = data.isCheck
+    }
 }

@@ -8,9 +8,14 @@
 
 import UIKit
 
-public final class WeatherView: XibLoadView {
-    @IBOutlet public weak var dayAfterTomorrowView: WeatherInfoView!
-    @IBOutlet public weak var todayView: WeatherInfoView!
-    @IBOutlet public weak var tomorrowView: WeatherInfoView!
-    public let noImage = UIImage(named: "icon_no_image", in: .init(for: WeatherView.self), compatibleWith: nil)!
+final class WeatherView: XibLoadView {
+    @IBOutlet private weak var dayAfterTomorrowView: WeatherInfoView!
+    @IBOutlet private weak var todayView: WeatherInfoView!
+    @IBOutlet private weak var tomorrowView: WeatherInfoView!
+
+    func updateViews(with data: WeatherViewData) {
+        todayView.updateViews(with: data.today)
+        tomorrowView.updateViews(with: data.tomorrow)
+        dayAfterTomorrowView.updateViews(with: data.dayAfterTomorrow)
+    }
 }
