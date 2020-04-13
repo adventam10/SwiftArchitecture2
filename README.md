@@ -1,15 +1,11 @@
-# SwiftArchitecture2
+# SwiftArchitecture2 (mvp_pv)
 [これ](https://github.com/adventam10/SwiftArchitecture)の再考版
 
 iOSアプリのアーキテクチャについて考える
 
 [livedoor天気のWeb API](http://weather.livedoor.com/weather_hacks/webservice)(商用利用不可)を利用した各都道府県の天気を表示するアプリ。
 
-## ブランチ
-* master  
-Cocoa MVC を意識して作成しました。
-* fat\_fat_fat  
-画面ごとのViewControllerのみで作成しました。（これこそが FatViewController??）
+MVP (Passive View) を意識して作成しました！
 
 ## 環境
 * Xcode 11.4
@@ -26,6 +22,7 @@ Cocoa Pods で導入（プル後にすぐビルドできるように Carthage �
 | [Ahmed-Ali/JSONExport](https://github.com/Ahmed-Ali/JSONExport) | JSONパース用（ファイルを作成） |
 | [realm/SwiftLint](https://github.com/realm/SwiftLint) | Lint ツール |
 | [mono0926/LicensePlist](https://github.com/mono0926/LicensePlist) | ライセンス表記用（ライセンス表記は大事😇） |
+| [mac-cain13/R.swift](https://github.com/mac-cain13/R.swift) | リソースファイルのコード補完 (標準装備にしたい) |
 
 ## Scheme
 * SwiftArchitecture2  
