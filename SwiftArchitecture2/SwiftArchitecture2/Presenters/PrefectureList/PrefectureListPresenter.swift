@@ -112,6 +112,10 @@ final class PrefectureListPresenter {
     }
 
     // MARK: - Make View Data
+    func makeAreaFilterPresenter(view: AreaFilterPresenterOutput) -> AreaFilterPresenter {
+        return .init(view: view,
+                     model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
+    }
     func makePrefectureListViewData() -> PrefectureListViewData {
         return .init(isFavoriteFilter: isCheckFavoriteFilter)
     }

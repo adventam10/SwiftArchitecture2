@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Models
 
 final class PrefectureListViewController: UIViewController, PrefectureListPresenterOutput {
     private var presenter: PrefectureListPresenter!
@@ -37,7 +36,7 @@ final class PrefectureListViewController: UIViewController, PrefectureListPresen
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? WeatherViewController,
-            let weatherModel = sender as? WeatherModel {
+            let weatherModel = sender as? WeatherModelInput {
             viewController.presenter = .init(view: viewController, model: weatherModel)
         }
     }
@@ -57,8 +56,7 @@ final class PrefectureListViewController: UIViewController, PrefectureListPresen
 
     func showAreaFilterViewController(button: UIButton) {
         let viewController = AreaFilterViewController()
-        viewController.presenter = .init(view: viewController,
-                                         model: AreaFilterModel(selectedAreaIds: presenter.selectedAreaIds))
+        viewController.presenter = presenter.makeAreaFilterPresenter(view: viewController)
         viewController.delegate = self
         showPopover(viewController: viewController,
                     sourceView: button,
