@@ -58,6 +58,38 @@ name: R.swift.Library, nameSpecified:
 body: The MIT License (MIT…
 version: 5.1.0
 
+name: ReactiveCocoa, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 10.2.0
+
+name: ReactiveCocoa, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 10.2.0
+
+name: ReactiveCocoa, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 10.2.0
+
+name: ReactiveCocoa, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 10.2.0
+
+name: ReactiveSwift, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 6.2.1
+
+name: ReactiveSwift, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 6.2.1
+
+name: ReactiveSwift, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 6.2.1
+
+name: ReactiveSwift, nameSpecified: 
+body: **Copyright (c) 2012…
+version: 6.2.1
+
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
 version: 0.39.2

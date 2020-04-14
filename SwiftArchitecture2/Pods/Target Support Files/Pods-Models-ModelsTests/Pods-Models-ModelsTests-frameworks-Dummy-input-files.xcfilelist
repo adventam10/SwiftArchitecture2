@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Models-ModelsTests/Pods-Models-ModelsTests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework
+${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework

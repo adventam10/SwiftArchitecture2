@@ -5,6 +5,9 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - ReactiveCocoa (10.2.0):
+    - ReactiveSwift (~> 6.2)
+  - ReactiveSwift (6.2.1)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
@@ -12,6 +15,8 @@ DEPENDENCIES:
   - LicensePlist (= 2.15.1)
   - PKHUD (= 5.2.1)
   - R.swift (= 5.1.0)
+  - ReactiveCocoa (= 10.2.0)
+  - ReactiveSwift (= 6.2.1)
   - SwiftLint (= 0.39.2)
 
 SPEC REPOS:
@@ -21,6 +26,8 @@ SPEC REPOS:
     - PKHUD
     - R.swift
     - R.swift.Library
+    - ReactiveCocoa
+    - ReactiveSwift
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -29,8 +36,10 @@ SPEC CHECKSUMS:
   PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
+  ReactiveSwift: 07ddf579f4eb3ee3bd656214f0461aaf2c0fd639
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 0bd26d090f16705b460b87b6ccb56e3d6b42864f
+PODFILE CHECKSUM: d9d080dac640db14b3c1e11122a2f781ad90ba0c
 
 COCOAPODS: 1.9.0
