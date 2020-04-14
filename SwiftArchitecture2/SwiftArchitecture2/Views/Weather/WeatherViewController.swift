@@ -9,7 +9,7 @@
 import UIKit
 
 final class WeatherViewController: UIViewController, WeatherPresenterOutput {
-    var presenter: WeatherPresenter!
+    var viewModel: WeatherViewModel!
     private lazy var myView = WeatherView()
 
     override func viewDidLoad() {
@@ -18,7 +18,7 @@ final class WeatherViewController: UIViewController, WeatherPresenterOutput {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh,
                                                             target: self,
                                                             action: #selector(refresh(_:)))
-        presenter.viewDidLoad()
+        viewModel.viewDidLoad()
     }
 
     override func loadView() {
@@ -26,7 +26,7 @@ final class WeatherViewController: UIViewController, WeatherPresenterOutput {
     }
 
     @objc private func refresh(_ sender: Any) {
-        presenter.didTapRefreshButton()
+        viewModel.didTapRefreshButton()
     }
 
     func updateViews(with data: WeatherViewData) {

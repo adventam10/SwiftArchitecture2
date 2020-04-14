@@ -16,7 +16,7 @@ final class AreaFilterViewController: UIViewController, AreaFilterPresenterOutpu
     weak var delegate: AreaFilterViewControllerDelegate?
     let viewSize = CGSize(width: 150, height: 44 * 9)
 
-    var presenter: AreaFilterPresenter!
+    var viewModel: AreaFilterViewModel!
     private lazy var myView = AreaFilterView()
 
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ final class AreaFilterViewController: UIViewController, AreaFilterPresenterOutpu
         myView.tableView.delegate = self
         myView.tableView.dataSource = self
         myView.allCheckButton.addTarget(self, action: #selector(allCheck(_:)), for: .touchUpInside)
-        presenter.viewDidLoad()
+        viewModel.viewDidLoad()
     }
 
     override func loadView() {
@@ -33,7 +33,7 @@ final class AreaFilterViewController: UIViewController, AreaFilterPresenterOutpu
     }
 
     @objc private func allCheck(_ sender: Any) {
-        presenter.didTapAllCheckButton()
+        viewModel.didTapAllCheckButton()
     }
 
     func updateViews(with data: AreaFilterViewData) {
@@ -48,18 +48,18 @@ final class AreaFilterViewController: UIViewController, AreaFilterPresenterOutpu
 
 extension AreaFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.didSelectRow(at: indexPath)
+        viewModel.didSelectRow(at: indexPath)
     }
 }
 
 extension AreaFilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfTableDataList
+        return viewModel.numberOfTableDataList
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.areaFilterTableViewCell, for: indexPath)!
-        cell.updateViews(with: presenter.makeAreaFilterTableViewCellData(forRow: indexPath.row))
+        cell.updateViews(with: viewModel.makeAreaFilterTableViewCellData(forRow: indexPath.row))
         return cell
     }
 }

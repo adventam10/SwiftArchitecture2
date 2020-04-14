@@ -1,5 +1,5 @@
 //
-//  WeatherPresenter.swift
+//  WeatherViewModel.swift
 //  SwiftArchitecture2
 //
 //  Created by am10 on 2020/04/08.
@@ -24,7 +24,7 @@ protocol WeatherPresenterOutput: AnyObject {
 extension WeatherModel: WeatherModelInput {
 }
 
-final class WeatherPresenter {
+final class WeatherViewModel {
     private var model: WeatherModelInput
     private weak var view: WeatherPresenterOutput!
 

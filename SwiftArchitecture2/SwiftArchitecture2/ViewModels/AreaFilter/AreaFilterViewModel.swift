@@ -1,5 +1,5 @@
 //
-//  AreaFilterPresenter.swift
+//  AreaFilterViewModel.swift
 //  SwiftArchitecture2
 //
 //  Created by am10 on 2020/04/08.
@@ -24,7 +24,7 @@ protocol AreaFilterPresenterOutput: AnyObject {
 extension AreaFilterModel: AreaFilterModelInput {
 }
 
-final class AreaFilterPresenter {
+final class AreaFilterViewModel {
     private var model: AreaFilterModelInput
     private weak var view: AreaFilterPresenterOutput!
 

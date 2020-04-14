@@ -9,7 +9,7 @@
 import UIKit
 
 final class PrefectureListViewController: UIViewController, PrefectureListPresenterOutput {
-    private var presenter: PrefectureListPresenter!
+    private var viewModel: PrefectureListViewModel!
     private lazy var myView = PrefectureListView()
 
     override func viewDidLoad() {
@@ -19,8 +19,8 @@ final class PrefectureListViewController: UIViewController, PrefectureListPresen
         myView.tableView.dataSource = self
         myView.areaFilterButton.addTarget(self, action: #selector(filterByArea(_:)), for: .touchUpInside)
         myView.favoriteFilterButton.addTarget(self, action: #selector(filterByFavorite(_:)), for: .touchUpInside)
-        presenter = .init(view: self)
-        presenter.viewDidLoad()
+        viewModel = .init(view: self)
+        viewModel.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +37,7 @@ final class PrefectureListViewController: UIViewController, PrefectureListPresen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? WeatherViewController,
             let weatherModel = sender as? WeatherModelInput {
-            viewController.presenter = .init(view: viewController, model: weatherModel)
+            viewController.viewModel = .init(view: viewController, model: weatherModel)
         }
     }
 
@@ -47,16 +47,16 @@ final class PrefectureListViewController: UIViewController, PrefectureListPresen
     }
 
     @objc private func filterByArea(_ sender: Any) {
-        presenter.didTapAreaFilterAreaButton(sender)
+        viewModel.didTapAreaFilterAreaButton(sender)
     }
 
     @objc private func filterByFavorite(_ sender: Any) {
-        presenter.didTapFavoriteFilterButton()
+        viewModel.didTapFavoriteFilterButton()
     }
 
     func showAreaFilterViewController(button: UIButton) {
         let viewController = AreaFilterViewController()
-        viewController.presenter = presenter.makeAreaFilterPresenter(view: viewController)
+        viewController.viewModel = viewModel.makeAreaFilterViewModel(view: viewController)
         viewController.delegate = self
         showPopover(viewController: viewController,
                     sourceView: button,
@@ -79,19 +79,19 @@ extension PrefectureListViewController: UIPopoverPresentationControllerDelegate 
 
 extension PrefectureListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.didSelectRow(at: indexPath)
+        viewModel.didSelectRow(at: indexPath)
     }
 }
 
 extension PrefectureListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfTableDataList
+        return viewModel.numberOfTableDataList
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.prefectureListTableViewCell, for: indexPath)!
         cell.delegate = self
-        cell.updateViews(with: presenter.makePrefectureListTableViewCellData(forRow: indexPath.row))
+        cell.updateViews(with: viewModel.makePrefectureListTableViewCellData(forRow: indexPath.row))
         return cell
     }
 }
@@ -101,12 +101,12 @@ extension PrefectureListViewController: PrefectureListTableViewCellDelegate {
         guard let indexPath = myView.tableView.indexPath(for: cell) else {
             return
         }
-        presenter.didTapFavoriteButton(at: indexPath)
+        viewModel.didTapFavoriteButton(at: indexPath)
     }
 }
 
 extension PrefectureListViewController: AreaFilterViewControllerDelegate {
     func areaFilterViewController(_ areaFilterViewController: AreaFilterViewController, didChangeSelectedAreaIds selectedAreaIds: Set<Int>) {
-        presenter.didChangeSelectedAreaIds(selectedAreaIds)
+        viewModel.didChangeSelectedAreaIds(selectedAreaIds)
     }
 }

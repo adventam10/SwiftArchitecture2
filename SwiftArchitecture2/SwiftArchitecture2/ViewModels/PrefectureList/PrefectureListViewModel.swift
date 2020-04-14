@@ -1,5 +1,5 @@
 //
-//  PrefectureListPresenter.swift
+//  PrefectureListViewModel.swift
 //  SwiftArchitecture2
 //
 //  Created by am10 on 2020/04/08.
@@ -30,7 +30,7 @@ protocol PrefectureListPresenterOutput: AnyObject {
 extension PrefectureListModel: PrefectureListModelInput {
 }
 
-final class PrefectureListPresenter {
+final class PrefectureListViewModel {
     private weak var view: PrefectureListPresenterOutput!
     private var model: PrefectureListModelInput
 
@@ -125,7 +125,7 @@ final class PrefectureListPresenter {
     }
 
     // MARK: -
-    func makeAreaFilterPresenter(view: AreaFilterPresenterOutput) -> AreaFilterPresenter {
+    func makeAreaFilterViewModel(view: AreaFilterPresenterOutput) -> AreaFilterViewModel {
         return .init(view: view,
                      model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
     }
