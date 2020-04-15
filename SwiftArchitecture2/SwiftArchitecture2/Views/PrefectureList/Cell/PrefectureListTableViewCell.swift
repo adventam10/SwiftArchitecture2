@@ -7,22 +7,21 @@
 //
 
 import UIKit
-
-protocol PrefectureListTableViewCellDelegate: AnyObject {
-    func prefectureListTableViewCell(_ cell: PrefectureListTableViewCell, didChangeFavorite sender: Any)
-}
+import ReactiveCocoa
+import ReactiveSwift
 
 final class PrefectureListTableViewCell: UITableViewCell {
-    weak var delegate: PrefectureListTableViewCellDelegate?
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var favoriteButton: UIButton!
-
-    @IBAction private func changeFavorite(_ sender: Any) {
-        delegate?.prefectureListTableViewCell(self, didChangeFavorite: sender)
-    }
+    @IBOutlet fileprivate weak var favoriteButton: UIButton!
 
     func updateViews(with data: PrefectureListTableViewCellData) {
         nameLabel.text = data.name
         favoriteButton.isSelected = data.isFavorite
+    }
+}
+
+extension Reactive where Base == PrefectureListTableViewCell {
+    var favoriteButtonEvent: Signal<UIButton, Never> {
+        return base.favoriteButton.reactive.controlEvents(.touchUpInside)
     }
 }

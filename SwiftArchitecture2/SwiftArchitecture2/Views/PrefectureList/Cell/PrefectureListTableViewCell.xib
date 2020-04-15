@@ -25,9 +25,6 @@
                         </constraints>
                         <state key="normal" image="btn_favorite_normal"/>
                         <state key="selected" image="btn_favorite_selected"/>
-                        <connections>
-                            <action selector="changeFavorite:" destination="QVU-EG-dUG" eventType="touchUpInside" id="MyF-kH-EGp"/>
-                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gm-vk-4Bn">
                         <rect key="frame" x="78" y="11.5" width="42" height="21"/>

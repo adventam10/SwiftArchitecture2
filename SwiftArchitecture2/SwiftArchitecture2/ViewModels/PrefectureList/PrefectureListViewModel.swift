@@ -8,6 +8,7 @@
 
 import UIKit
 import Models
+import ReactiveSwift
 
 protocol PrefectureListModelInput {
     var prefectureList: [CityData] { get }
@@ -18,104 +19,94 @@ protocol PrefectureListModelInput {
                             selectedAreaIds: Set<Int>) -> [CityData]
 }
 
-protocol PrefectureListPresenterOutput: AnyObject {
-    func showProgress()
-    func hideProgress()
-    func showAlert(message: String)
-    func showWeatherViewController(model: WeatherModelInput)
-    func showAreaFilterViewController(button: UIButton)
-    func updateViews(with data: PrefectureListViewData)
-}
-
 extension PrefectureListModel: PrefectureListModelInput {
 }
 
 final class PrefectureListViewModel {
-    private weak var view: PrefectureListPresenterOutput!
     private var model: PrefectureListModelInput
+    private var mutableIsCheckFavoriteFilter = MutableProperty(false)
+    private(set) lazy var isCheckFavoriteFilter = Property(mutableIsCheckFavoriteFilter)
+    
+    private var mutableTableDataList = MutableProperty([CityData]())
+    private(set) lazy var tableDataList = Property(mutableTableDataList)
 
-    private var tableDataList: [CityData] = [] {
-        didSet {
-            view.updateViews(with: makePrefectureListViewData())
+    private let lifetime: Lifetime
+    private let favoriteFilterButtonSubject = Signal<UIButton, Never>.pipe()
+    var favoriteFilterButtonButtonAction: BindingTarget<UIButton> {
+        return  BindingTarget(lifetime: lifetime) { [weak self] button in
+            self?.mutableIsCheckFavoriteFilter.value.toggle()
+            self?.filteredTableDataList()
+            self?.favoriteFilterButtonSubject.input.send(value: button)
         }
     }
-    private(set) var isCheckFavoriteFilter = false
-    private(set) var selectedAreaIds: Set<Int> = []
+
+    lazy var favoriteButtonAction = Action<IndexPath, Void, Never> { [weak self] indexPath in
+        guard let weakSelf = self,
+            let prefecture = weakSelf.prefecture(forRow: indexPath.row) else {
+                return .empty
+        }
+        let result = weakSelf.model.updateFavoriteIds(cityId: prefecture.cityId)
+        switch result {
+        case .success:
+            weakSelf.filteredTableDataList()
+        case .failure:
+            // アラートを出すほどではない？？
+            print("お気に入りの保存に失敗しました")
+        }
+        return .empty
+    }
+
+    lazy var didSelectRowAction = Action<IndexPath, WeatherModelInput, APIError> { [weak self] indexPath in
+        guard let weakSelf = self,
+            let prefecture = weakSelf.prefecture(forRow: indexPath.row) else {
+                return .init(error: .network)
+        }
+//        view.showProgress()
+        let weatherModel = WeatherModel(cityId: prefecture.cityId, apiClient: weakSelf.makeAPIClient())
+        return weakSelf.weather(weatherModel: weatherModel)
+    }
+
+    private(set) var selectedAreaIds: Set<Int>
 
     var numberOfTableDataList: Int {
-        return tableDataList.count
+        return tableDataList.value.count
     }
 
-    init(view: PrefectureListPresenterOutput, model: PrefectureListModelInput = PrefectureListModel(dataStore: FavoritePrefectureDataStoreImpl())) {
-        self.view = view
+    init(lifetime: Lifetime, model: PrefectureListModelInput = PrefectureListModel(dataStore: FavoritePrefectureDataStoreImpl())) {
         self.model = model
-        tableDataList = model.prefectureList
-        selectedAreaIds = Set(Area.allCases.map { $0.id })
+        self.lifetime = lifetime
+        self.mutableTableDataList.value = model.prefectureList
+        self.selectedAreaIds = Set(Area.allCases.map { $0.id })
     }
 
-    func prefecture(forRow row: Int) -> CityData? {
-        guard row < tableDataList.count else {
-            return nil
-        }
-        return tableDataList[row]
-    }
-
-    // MARK: - Action
-    func viewDidLoad() {
-        filteredTableDataList()
-    }
-
-    func didSelectRow(at indexPath: IndexPath) {
-        guard let prefecture = prefecture(forRow: indexPath.row) else {
-            return
-        }
-        view.showProgress()
-        let weatherModel = WeatherModel(cityId: prefecture.cityId, apiClient: makeAPIClient())
-        weatherModel.requestWeather { [weak self, weatherModel] result in
-            self?.view.hideProgress()
-            switch result {
-            case .success:
-                self?.view.showWeatherViewController(model: weatherModel)
-            case .failure(let error):
-                self?.view.showAlert(message: error.localizedDescription)
+    private func weather(weatherModel: WeatherModelInput) -> SignalProducer<WeatherModelInput, APIError> {
+        return SignalProducer<WeatherModelInput, APIError> { [weatherModel] (innerObserver, _) in
+            weatherModel.requestWeather { result in
+                switch result {
+                case .success:
+                    innerObserver.send(value: weatherModel)
+                case .failure(let error):
+                    innerObserver.send(error: error)
+                }
+                innerObserver.sendCompleted()
             }
         }
     }
 
-    func didTapAreaFilterAreaButton(_ sender: Any) {
-        view.showAreaFilterViewController(button: sender as! UIButton)
-    }
-
-    func didTapFavoriteFilterButton() {
-        isCheckFavoriteFilter.toggle()
-        filteredTableDataList()
-    }
-
-    func didTapFavoriteButton(at indexPath: IndexPath) {
-        guard let prefecture = prefecture(forRow: indexPath.row) else {
-            return
+    func prefecture(forRow row: Int) -> CityData? {
+        guard row < tableDataList.value.count else {
+            return nil
         }
-        let result = model.updateFavoriteIds(cityId: prefecture.cityId)
-        switch result {
-        case .success:
-            filteredTableDataList()
-        case .failure:
-            // アラートを出すほどではない？？
-            print("お気に入りの保存に失敗しました")
-            return
-        }
+        return tableDataList.value[row]
     }
 
+    // MARK: - Action
     func didChangeSelectedAreaIds(_ selectedAreaIds: Set<Int>) {
         self.selectedAreaIds = selectedAreaIds
         filteredTableDataList()
     }
 
     // MARK: - Make View Data
-    func makePrefectureListViewData() -> PrefectureListViewData {
-        return .init(isFavoriteFilter: isCheckFavoriteFilter)
-    }
-
     func makePrefectureListTableViewCellData(forRow row: Int) -> PrefectureListTableViewCellData {
         guard let prefecture = prefecture(forRow: row) else {
             return .init(name: "", isFavorite: false)
@@ -125,9 +116,8 @@ final class PrefectureListViewModel {
     }
 
     // MARK: -
-    func makeAreaFilterViewModel(view: AreaFilterPresenterOutput) -> AreaFilterViewModel {
-        return .init(view: view,
-                     model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
+    func makeAreaFilterViewModel() -> AreaFilterViewModel {
+        return .init(model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
     }
 
     // この処理はもっとどこか共通の場所でやるべきかもしれない
@@ -140,8 +130,8 @@ final class PrefectureListViewModel {
     }
 
     private func filteredTableDataList() {
-        tableDataList = model.prefectureFiltered(isFilterFavorite: isCheckFavoriteFilter,
-                                                 favoriteIds: model.favoriteIds,
-                                                 selectedAreaIds: selectedAreaIds)
+        mutableTableDataList.value = model.prefectureFiltered(isFilterFavorite: isCheckFavoriteFilter.value,
+                                                              favoriteIds: model.favoriteIds,
+                                                              selectedAreaIds: selectedAreaIds)
     }
 }
