@@ -53,7 +53,7 @@ final class PrefectureListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? WeatherViewController,
             let weatherModel = sender as? WeatherModelInput {
-            viewController.viewModel = .init(lifetime: reactive.lifetime, model: weatherModel)
+            viewController.viewModel = .init(model: weatherModel)
         }
     }
 

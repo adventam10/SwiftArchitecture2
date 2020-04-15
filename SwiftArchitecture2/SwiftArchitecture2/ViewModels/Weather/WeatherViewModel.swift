@@ -8,17 +8,12 @@
 
 import UIKit
 import Models
+import ReactiveCocoa
+import ReactiveSwift
 
 protocol WeatherModelInput {
     var weather: Weather! { get }
     func requestWeather(_ completion: @escaping (Result<Weather, APIError>) -> Void)
-}
-
-protocol WeatherPresenterOutput: AnyObject {
-    func showProgress()
-    func hideProgress()
-    func showAlert(message: String)
-    func updateViews(with data: WeatherViewData)
 }
 
 extension WeatherModel: WeatherModelInput {
@@ -26,7 +21,12 @@ extension WeatherModel: WeatherModelInput {
 
 final class WeatherViewModel {
     private var model: WeatherModelInput
-    private weak var view: WeatherPresenterOutput!
+
+    private(set) lazy var weatherViewData = Property(mutableWeatherViewData)
+    private lazy var mutableWeatherViewData = MutableProperty(self.makeWeatherViewData())
+    lazy var refreshButtonAction = Action<Void, Void, APIError> { _ in
+        return self.weather()
+    }
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -35,28 +35,23 @@ final class WeatherViewModel {
         return formatter
     }()
 
-    init(view: WeatherPresenterOutput, model: WeatherModelInput) {
-        self.view = view
+    init(model: WeatherModelInput) {
         self.model = model
     }
 
-    // MARK: - Action
-    func viewDidLoad() {
-        view.updateViews(with: makeWeatherViewData())
-    }
-
-    func didTapRefreshButton() {
-        self.view.showProgress()
-        model.requestWeather { [weak self] result in
-            self?.view.hideProgress()
-            guard let weakSelf = self else {
-                return
-            }
-            switch result {
-            case .success:
-                weakSelf.view.updateViews(with: weakSelf.makeWeatherViewData())
-            case .failure(let error):
-                weakSelf.view.showAlert(message: error.localizedDescription)
+    private func weather() -> SignalProducer<Void, APIError> {
+        return SignalProducer<Void, APIError> { [weak self] (innerObserver, _) in
+            self?.model.requestWeather { result in
+                switch result {
+                case .success:
+                    if let weakSelf = self {
+                        weakSelf.mutableWeatherViewData.value = weakSelf.makeWeatherViewData()
+                    }
+                    innerObserver.send(value: ())
+                case .failure(let error):
+                    innerObserver.send(error: error)
+                }
+                innerObserver.sendCompleted()
             }
         }
     }
