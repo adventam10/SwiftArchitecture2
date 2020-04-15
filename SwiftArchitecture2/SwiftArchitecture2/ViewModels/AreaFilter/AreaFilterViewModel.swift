@@ -8,6 +8,8 @@
 
 import UIKit
 import Models
+import ReactiveCocoa
+import ReactiveSwift
 
 protocol AreaFilterModelInput {
     var selectedAreaIds: Set<Int> { get }
@@ -16,31 +18,51 @@ protocol AreaFilterModelInput {
     func updateAreaIds(isAllCheck: Bool, completion: @escaping ((Set<Int>) -> Void))
 }
 
-protocol AreaFilterPresenterOutput: AnyObject {
-    func didChangeSelectedAreaIds(_ selectedAreaIds: Set<Int>)
-    func updateViews(with data: AreaFilterViewData)
-}
-
 extension AreaFilterModel: AreaFilterModelInput {
 }
 
 final class AreaFilterViewModel {
     private var model: AreaFilterModelInput
-    private weak var view: AreaFilterPresenterOutput!
 
-    private var isAllCheck: Bool {
-        return tableDataList.allSatisfy { model.selectedAreaIds.contains($0.id) }
+    private var mutableSelectedAreaIds = MutableProperty(Set<Int>())
+    private(set) lazy var selectedAreaIds = Property(mutableSelectedAreaIds)
+    private var mutableIsAllCheck = MutableProperty(true)
+    private(set) lazy var isAllCheck = Property(mutableIsAllCheck)
+    private let lifetime: Lifetime
+    private let allCheckButtonSubject = Signal<UIButton, Never>.pipe()
+    var allCheckButtonAction: BindingTarget<UIButton> {
+        return BindingTarget(lifetime: lifetime) { [weak self] button in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.model.updateAreaIds(isAllCheck: !weakSelf.isAllCheck.value) { selectedAreaIds in
+                weakSelf.mutableSelectedAreaIds.value = selectedAreaIds
+            }
+            weakSelf.allCheckButtonSubject.input.send(value: button)
+        }
     }
+    lazy var didSelectRowAction = Action<IndexPath, Void, Never> { [weak self] indexPath in
+        guard let weakSelf = self,
+            let area = weakSelf.area(forRow: indexPath.row) else {
+                return .empty
+        }
+        return weakSelf.updateAreaIds(areaId: area.id)
+    }
+
     private var tableDataList: [Area] = []
 
     var numberOfTableDataList: Int {
         return tableDataList.count
     }
 
-    init(view: AreaFilterPresenterOutput, model: AreaFilterModelInput) {
-        self.view = view
+    init(lifetime: Lifetime, model: AreaFilterModelInput) {
         self.model = model
-        tableDataList = model.areaList
+        self.lifetime = lifetime
+        self.tableDataList = model.areaList
+        self.mutableSelectedAreaIds.value = model.selectedAreaIds
+        self.mutableIsAllCheck <~ selectedAreaIds.map { [weak self] value in
+            self?.tableDataList.allSatisfy { value.contains($0.id) } ?? false
+        }
     }
 
     func area(forRow row: Int) -> Area? {
@@ -50,39 +72,17 @@ final class AreaFilterViewModel {
         return tableDataList[row]
     }
 
-    // MARK: - Action
-    func viewDidLoad() {
-        view.updateViews(with: makeAreaFilterViewData())
-    }
-
-    func didSelectRow(at indexPath: IndexPath) {
-        guard let area = area(forRow: indexPath.row) else {
-            return
-        }
-        model.updateAreaIds(areaId: area.id) { [weak self] selectedAreaIds in
-            guard let weakSelf = self else {
-                return
+    private func updateAreaIds(areaId: Int) -> SignalProducer<Void, Never> {
+        return SignalProducer<Void, Never> { [weak self] (innerObserver, _) in
+            self?.model.updateAreaIds(areaId: areaId) { selectedAreaIds in
+                self?.mutableSelectedAreaIds.value = selectedAreaIds
+                innerObserver.send(value: ())
+                innerObserver.sendCompleted()
             }
-            weakSelf.view.updateViews(with: weakSelf.makeAreaFilterViewData())
-            weakSelf.view.didChangeSelectedAreaIds(selectedAreaIds)
-        }
-    }
-
-    func didTapAllCheckButton() {
-        model.updateAreaIds(isAllCheck: !isAllCheck) { [weak self] selectedAreaIds in
-            guard let weakSelf = self else {
-                return
-            }
-            weakSelf.view.updateViews(with: weakSelf.makeAreaFilterViewData())
-            weakSelf.view.didChangeSelectedAreaIds(selectedAreaIds)
         }
     }
 
     // MARK: - Make View Data
-    func makeAreaFilterViewData() -> AreaFilterViewData {
-        return .init(isAllCheck: isAllCheck)
-    }
-
     func makeAreaFilterTableViewCellData(forRow row: Int) -> AreaFilterTableViewCellData {
         guard let area = area(forRow: row) else {
             return .init(name: "", isCheck: false)

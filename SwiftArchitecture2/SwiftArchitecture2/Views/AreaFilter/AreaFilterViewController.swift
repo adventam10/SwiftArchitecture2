@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import ReactiveCocoa
+import ReactiveSwift
 
 protocol AreaFilterViewControllerDelegate: AnyObject {
     func areaFilterViewController(_ areaFilterViewController: AreaFilterViewController, didChangeSelectedAreaIds selectedAreaIds: Set<Int>)
 }
 
-final class AreaFilterViewController: UIViewController, AreaFilterPresenterOutput {
+final class AreaFilterViewController: UIViewController {
     weak var delegate: AreaFilterViewControllerDelegate?
     let viewSize = CGSize(width: 150, height: 44 * 9)
 
@@ -24,31 +26,26 @@ final class AreaFilterViewController: UIViewController, AreaFilterPresenterOutpu
         // Do any additional setup after loading the view.
         myView.tableView.delegate = self
         myView.tableView.dataSource = self
-        myView.allCheckButton.addTarget(self, action: #selector(allCheck(_:)), for: .touchUpInside)
-        viewModel.viewDidLoad()
+        myView.allCheckButton.reactive.isSelected <~ viewModel.isAllCheck
+        viewModel.allCheckButtonAction <~ myView.allCheckButton.reactive.controlEvents(.touchUpInside)
+        viewModel.selectedAreaIds.signal.observeValues { [weak self] selectedAreaIds in
+            self?.myView.tableView.reloadData()
+            self?.didChangeSelectedAreaIds(selectedAreaIds)
+        }
     }
 
     override func loadView() {
         view = myView
     }
 
-    @objc private func allCheck(_ sender: Any) {
-        viewModel.didTapAllCheckButton()
-    }
-
-    func updateViews(with data: AreaFilterViewData) {
-        myView.tableView.reloadData()
-        myView.updateViews(with: data)
-    }
-
-    func didChangeSelectedAreaIds(_ selectedAreaIds: Set<Int>) {
+    private func didChangeSelectedAreaIds(_ selectedAreaIds: Set<Int>) {
         delegate?.areaFilterViewController(self, didChangeSelectedAreaIds: selectedAreaIds)
     }
 }
 
 extension AreaFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.didSelectRow(at: indexPath)
+        viewModel.didSelectRowAction.apply(indexPath).start()
     }
 }
 

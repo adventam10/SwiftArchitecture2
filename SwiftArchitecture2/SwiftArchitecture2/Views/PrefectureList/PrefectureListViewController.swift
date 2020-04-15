@@ -28,7 +28,7 @@ final class PrefectureListViewController: UIViewController {
         myView.areaFilterButton.reactive.controlEvents(.touchUpInside).observeValues { [weak self] button in
             self?.showAreaFilterViewController(button: button)
         }
-        viewModel.favoriteFilterButtonButtonAction <~ myView.favoriteFilterButton.reactive.controlEvents(.touchUpInside)
+        viewModel.favoriteFilterButtonAction <~ myView.favoriteFilterButton.reactive.controlEvents(.touchUpInside)
         viewModel.didSelectRowAction.values.observeValues { [weak self] weatherModel in
             self?.hideProgress()
             self?.showWeatherViewController(model: weatherModel)
@@ -53,7 +53,7 @@ final class PrefectureListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? WeatherViewController,
             let weatherModel = sender as? WeatherModelInput {
-            viewController.viewModel = .init(model: weatherModel)
+            viewController.viewModel = .init(lifetime: reactive.lifetime, model: weatherModel)
         }
     }
 

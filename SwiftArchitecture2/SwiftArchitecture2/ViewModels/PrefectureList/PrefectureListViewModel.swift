@@ -32,7 +32,7 @@ final class PrefectureListViewModel {
 
     private let lifetime: Lifetime
     private let favoriteFilterButtonSubject = Signal<UIButton, Never>.pipe()
-    var favoriteFilterButtonButtonAction: BindingTarget<UIButton> {
+    var favoriteFilterButtonAction: BindingTarget<UIButton> {
         return  BindingTarget(lifetime: lifetime) { [weak self] button in
             self?.mutableIsCheckFavoriteFilter.value.toggle()
             self?.filteredTableDataList()
@@ -61,7 +61,6 @@ final class PrefectureListViewModel {
             let prefecture = weakSelf.prefecture(forRow: indexPath.row) else {
                 return .init(error: .network)
         }
-//        view.showProgress()
         let weatherModel = WeatherModel(cityId: prefecture.cityId, apiClient: weakSelf.makeAPIClient())
         return weakSelf.weather(weatherModel: weatherModel)
     }
@@ -117,7 +116,7 @@ final class PrefectureListViewModel {
 
     // MARK: -
     func makeAreaFilterViewModel() -> AreaFilterViewModel {
-        return .init(model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
+        return .init(lifetime: lifetime, model: AreaFilterModel(selectedAreaIds: selectedAreaIds))
     }
 
     // この処理はもっとどこか共通の場所でやるべきかもしれない
