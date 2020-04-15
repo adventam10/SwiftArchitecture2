@@ -56,13 +56,22 @@ final class PrefectureListViewModel {
         return .empty
     }
 
-    lazy var didSelectRowAction = Action<IndexPath, WeatherModelInput, APIError> { [weak self] indexPath in
+    private(set) lazy var didSelectRowAction = Action<IndexPath, WeatherModelInput, APIError> { [weak self] indexPath in
         guard let weakSelf = self,
             let prefecture = weakSelf.prefecture(forRow: indexPath.row) else {
                 return .init(error: .network)
         }
         let weatherModel = WeatherModel(cityId: prefecture.cityId, apiClient: weakSelf.makeAPIClient())
         return weakSelf.weather(weatherModel: weatherModel)
+    }
+
+    private(set) lazy var didChangeSelectedAreaIdsAction = Action<Set<Int>, Void, Never> { [weak self] selectedAreaIds in
+        guard let weakSelf = self else {
+            return .empty
+        }
+        weakSelf.selectedAreaIds = selectedAreaIds
+        weakSelf.filteredTableDataList()
+        return .empty
     }
 
     private(set) var selectedAreaIds: Set<Int>
@@ -97,12 +106,6 @@ final class PrefectureListViewModel {
             return nil
         }
         return tableDataList.value[row]
-    }
-
-    // MARK: - Action
-    func didChangeSelectedAreaIds(_ selectedAreaIds: Set<Int>) {
-        self.selectedAreaIds = selectedAreaIds
-        filteredTableDataList()
     }
 
     // MARK: - Make View Data

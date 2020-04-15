@@ -79,8 +79,6 @@
 		0EEC626A2443806200DB562F /* AreaFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC62652443806200DB562F /* AreaFilterViewModel.swift */; };
 		0EEC626B2443806200DB562F /* PrefectureListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC62672443806200DB562F /* PrefectureListViewModel.swift */; };
 		0EEC626C2443806200DB562F /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC62692443806200DB562F /* WeatherViewModel.swift */; };
-		0EEC626E2443828700DB562F /* AreaFilterViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC626D2443828700DB562F /* AreaFilterViewData.swift */; };
-		0EEC62702443829900DB562F /* PrefectureListViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC626F2443829900DB562F /* PrefectureListViewData.swift */; };
 		0EEC6272244382B400DB562F /* WeatherInfoViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC6271244382B400DB562F /* WeatherInfoViewData.swift */; };
 		0EEC6274244382CA00DB562F /* WeatherViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC6273244382CA00DB562F /* WeatherViewData.swift */; };
 		0EEC6276244382DF00DB562F /* AreaFilterTableViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEC6275244382DF00DB562F /* AreaFilterTableViewCellData.swift */; };
@@ -231,8 +229,6 @@
 		0EEC62652443806200DB562F /* AreaFilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaFilterViewModel.swift; sourceTree = "<group>"; };
 		0EEC62672443806200DB562F /* PrefectureListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefectureListViewModel.swift; sourceTree = "<group>"; };
 		0EEC62692443806200DB562F /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
-		0EEC626D2443828700DB562F /* AreaFilterViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaFilterViewData.swift; sourceTree = "<group>"; };
-		0EEC626F2443829900DB562F /* PrefectureListViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefectureListViewData.swift; sourceTree = "<group>"; };
 		0EEC6271244382B400DB562F /* WeatherInfoViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoViewData.swift; sourceTree = "<group>"; };
 		0EEC6273244382CA00DB562F /* WeatherViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewData.swift; sourceTree = "<group>"; };
 		0EEC6275244382DF00DB562F /* AreaFilterTableViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaFilterTableViewCellData.swift; sourceTree = "<group>"; };
@@ -648,7 +644,6 @@
 			isa = PBXGroup;
 			children = (
 				0EEC62652443806200DB562F /* AreaFilterViewModel.swift */,
-				0EEC626D2443828700DB562F /* AreaFilterViewData.swift */,
 				0EEC6275244382DF00DB562F /* AreaFilterTableViewCellData.swift */,
 			);
 			path = AreaFilter;
@@ -658,7 +653,6 @@
 			isa = PBXGroup;
 			children = (
 				0EEC62672443806200DB562F /* PrefectureListViewModel.swift */,
-				0EEC626F2443829900DB562F /* PrefectureListViewData.swift */,
 				0EEC6277244382F400DB562F /* PrefectureListTableViewCellData.swift */,
 			);
 			path = PrefectureList;
@@ -1165,7 +1159,6 @@
 				0E2164E8243DEB7F00F7C09F /* UIViewController+showProgress.swift in Sources */,
 				0EEC625724437F3000DB562F /* AreaFilterTableViewCell.swift in Sources */,
 				0EEC626B2443806200DB562F /* PrefectureListViewModel.swift in Sources */,
-				0EEC62702443829900DB562F /* PrefectureListViewData.swift in Sources */,
 				0EEC625A24437F3000DB562F /* PrefectureListView.swift in Sources */,
 				0EEC6272244382B400DB562F /* WeatherInfoViewData.swift in Sources */,
 				0EEC6276244382DF00DB562F /* AreaFilterTableViewCellData.swift in Sources */,
@@ -1176,7 +1169,6 @@
 				0EC4A8C7243D60EC009193FF /* AreaFilterViewController.swift in Sources */,
 				0E2164D9243D79F000F7C09F /* UIAlertController+showAlert.swift in Sources */,
 				0EC4A824243D5494009193FF /* SceneDelegate.swift in Sources */,
-				0EEC626E2443828700DB562F /* AreaFilterViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

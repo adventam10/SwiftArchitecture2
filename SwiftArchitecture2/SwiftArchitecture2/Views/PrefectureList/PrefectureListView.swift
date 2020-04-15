@@ -16,8 +16,4 @@ final class PrefectureListView: XibLoadView {
             tableView.register(R.nib.prefectureListTableViewCell)
         }
     }
-
-    func updateViews(with data: PrefectureListViewData) {
-        favoriteFilterButton.isSelected = data.isFavoriteFilter
-    }
 }

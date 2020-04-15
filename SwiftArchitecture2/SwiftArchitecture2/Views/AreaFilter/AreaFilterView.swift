@@ -15,8 +15,4 @@ final class AreaFilterView: XibLoadView {
         }
     }
     @IBOutlet weak var allCheckButton: UIButton!
-
-    func updateViews(with data: AreaFilterViewData) {
-        allCheckButton.isSelected = data.isAllCheck
-    }
 }

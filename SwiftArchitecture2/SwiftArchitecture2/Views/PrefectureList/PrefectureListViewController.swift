@@ -30,12 +30,13 @@ final class PrefectureListViewController: UIViewController {
         }
         viewModel.favoriteFilterButtonAction <~ myView.favoriteFilterButton.reactive.controlEvents(.touchUpInside)
         viewModel.didSelectRowAction.values.observeValues { [weak self] weatherModel in
-            self?.hideProgress()
             self?.showWeatherViewController(model: weatherModel)
         }
         viewModel.didSelectRowAction.errors.observeValues { [weak self] error in
-            self?.hideProgress()
             self?.showAlert(message: error.localizedDescription)
+        }
+        viewModel.didSelectRowAction.completed.observeValues { [weak self] _ in
+            self?.hideProgress()
         }
     }
 
@@ -104,6 +105,6 @@ extension PrefectureListViewController: UITableViewDataSource {
 
 extension PrefectureListViewController: AreaFilterViewControllerDelegate {
     func areaFilterViewController(_ areaFilterViewController: AreaFilterViewController, didChangeSelectedAreaIds selectedAreaIds: Set<Int>) {
-        viewModel.didChangeSelectedAreaIds(selectedAreaIds)
+        viewModel.didChangeSelectedAreaIdsAction.apply(selectedAreaIds).start()
     }
 }
